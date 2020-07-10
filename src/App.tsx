@@ -1,26 +1,46 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import Header from './Components/Header';
+import About from './Components/About';
+import Contact from './Components/Contact';
+import Footer from './Components/Footer';
+import { PortfolioData } from './Models/portfolioData';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component<{}, PortfolioData>{
+
+  async componentDidMount(){
+    await this.getResumeData();
+    
+    console.log(this.state)
+  }
+
+  async getResumeData() {
+
+    await fetch('/resumeData.json')
+      .then(response => {
+        if (!response.ok){
+          console.log(response);
+          alert(response);
+        }
+        return response.json();
+      }).then(value => this.setState({...value}));
+  }
+
+
+  render() {
+
+    return (
+      this.state? 
+      <div className="App">
+        <Header {...this.state} />
+        <About {...this.state} />
+        <Contact {...this.state} />
+        <Footer {...this.state} />
+      </div>
+      :
+      <div></div>
+    );
+  }
 }
 
 export default App;
