@@ -6,6 +6,7 @@ import Contact from './Components/Contact';
 import Footer from './Components/Footer';
 import { PortfolioData } from './Models/portfolioData';
 
+
 class App extends Component<{}, PortfolioData>{
 
   async componentDidMount(){
