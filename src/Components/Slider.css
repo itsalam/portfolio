@@ -1,0 +1,22 @@
+.slider {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    position:relative;
+}
+
+.slide {
+    overflow: hidden;
+    will-change: transform;
+    transform: translateY(100%);
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+}
+
+.active {
+    transform: translateY(0);
+    
+}
+
+

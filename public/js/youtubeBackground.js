@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 function onYouTubeIframeAPIReady() {
     var player;
     player = new YT.Player('YouTubeBackgroundVideoPlayer', {
@@ -27,7 +28,7 @@ function onYouTubeIframeAPIReady() {
           },
           onStateChange: function(e) {
             if (e.data == YT.PlayerState.PLAYING) { // fade out #_buffering-background
-                Velocity(document.getElementById('_buffering-background'), { opacity: 0 }, 500);
+              Velocity(document.getElementById('_buffering-background'), { opacity: 0 }, 500);
             }
             if (e.data == YT.PlayerState.ENDED) { // loop video
                 e.target.playVideo();

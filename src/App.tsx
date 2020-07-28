@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import './App.css';
-import Header from './Components/Header';
+import HomePage from './Components/HomePage';
 import About from './Components/About';
 import Contact from './Components/Contact';
 import Footer from './Components/Footer';
 import { PortfolioData } from './Models/portfolioData';
+import Header from './Components/Header/Header';
+import { Slider } from './Components/Slider';
 
 
-class App extends Component<{}, PortfolioData>{
+class App extends Component<{}, {slides: JSX.Element[]}>{
 
   async componentDidMount(){
     await this.getResumeData();
@@ -24,8 +26,17 @@ class App extends Component<{}, PortfolioData>{
           alert(response);
         }
         return response.json();
-      }).then(value => this.setState({...value}));
+      }).then(value => this.setState({
+        slides: [
+          <HomePage {...value} />,
+          <About {...value} />,
+          <Contact {...value} />
+        ]
+      }));
+    
   }
+
+
 
 
   render() {
@@ -33,10 +44,7 @@ class App extends Component<{}, PortfolioData>{
     return (
       this.state? 
       <div className="App">
-        <Header {...this.state} />
-        <About {...this.state} />
-        <Contact {...this.state} />
-        <Footer {...this.state} />
+        <Slider slides={this.state.slides}></Slider>
       </div>
       :
       <div></div>
