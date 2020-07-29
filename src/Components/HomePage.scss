@@ -14,8 +14,13 @@
 .video-background {
     position: absolute;
 	overflow: hidden;
-    height: 100vh;
-    width: 100vw;
+    height: 100%;
+    width: 100%;
+}
+
+#_buffering-background {
+    background: #222;
+    z-index: 1;
 }
 
 
@@ -25,7 +30,7 @@
     height: 300vh; 
     width: 120vw;
     pointer-events: none;
-    z-index: -2;
+    z-index: 1;
     ////
 }
 

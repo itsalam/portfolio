@@ -3,7 +3,9 @@
     "typeRoots": [
       "node_modules/@types"
     ],
-    "types": [ "youtube" ],
+    "types": [
+      "youtube"
+    ],
     "target": "es5",
     "lib": [
       "dom",
@@ -20,7 +22,8 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "noEmit": true,
-    "jsx": "react"
+    "jsx": "react",
+    "isolatedModules": true
   },
   "include": [
     "src"
