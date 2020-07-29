@@ -1,5 +1,9 @@
 {
   "compilerOptions": {
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "types": [ "youtube" ],
     "target": "es5",
     "lib": [
       "dom",
@@ -15,7 +19,6 @@
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "isolatedModules": true,
     "noEmit": true,
     "jsx": "react"
   },
