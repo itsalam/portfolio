@@ -14,8 +14,8 @@
     "@types/node": "^12.12.50",
     "@types/react": "^16.9.43",
     "@types/react-dom": "^16.9.8",
-    "@types/youtube": "0.0.39",
     "@types/react-transition-group": "^4.4.0",
+    "@types/youtube": "0.0.39",
     "animejs": "^3.2.0",
     "node-sass": "^4.14.1",
     "particles.js": "^2.0.0",
@@ -25,6 +25,7 @@
     "react-player": "^2.5.0",
     "react-scripts": "3.4.1",
     "react-transition-group": "^4.4.1",
+    "typed.js": "^2.0.11",
     "typescript": "^3.9.6",
     "videojs-youtube": "^2.6.1"
   },

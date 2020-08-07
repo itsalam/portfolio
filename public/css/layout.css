@@ -52,7 +52,7 @@ header .banner-text {
    height: 100%;
    width: 100%;}
 header .banner-text h1 {
-   font: 90px/1.1em 'opensans-bold', sans-serif;
+   font: 40px/1.1em 'Anonymous Pro', sans-serif;
    color: #fff;
    letter-spacing: -2px;
    margin: 0 auto 18px auto;
@@ -441,7 +441,7 @@ call-to-action .button {
 /* contact form */
 #contact form { margin-bottom: 30px; }
 #contact label {
-   font: 15px/24px 'opensans-bold', sans-serif;
+   font: 15px/24px 'recursive', sans-serif;
    margin: 12px 0;
    color: #EBEEEE;
 	display: inline-block;

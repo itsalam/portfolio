@@ -14,7 +14,7 @@
     /* header styles
    ------------------------------------------------------------------ */
    header .banner-text h1 {
-      font: 80px/1.1em 'opensans-bold', sans-serif;
+      font: 80px/1.1em 'Anonymous Pro', sans-serif;
       letter-spacing: -1px;
       margin: 0 auto 12px auto;
    }
@@ -29,7 +29,7 @@
    ------------------------------------------------------------------ */
    header .banner { padding-bottom: 12px; }
    header .banner-text h1 {
-      font: 78px/1.1em 'opensans-bold', sans-serif;
+      font: 78px/1.1em 'Anonymous Pro', sans-serif;
       letter-spacing: -1px;      
    }
    header .banner-text h3 {
@@ -191,7 +191,7 @@
       padding-bottom: 12px;
       padding-top: 6px;
    }
-   header .banner-text h1 { font: 68px/1.1em 'opensans-bold', sans-serif; }
+   header .banner-text h1 { font: 68px/1.1em 'Anonymous Pro', sans-serif; }
    header .banner-text h3 {
       font: 16px/1.9em 'librebaskerville-regular', serif;
       width: 85%;
@@ -351,7 +351,8 @@
    -------------------------------------------------------------------- */
    header .banner { padding-top: 24px; }
    header .banner-text h1 {
-      font: 40px/1.1em 'opensans-bold', sans-serif;      
+      font-size: 3vw;
+      font: 30px/1.4em 'recursive', sans-serif;      
       margin: 0 auto 24px auto;
    }
    header .banner-text h3 {
@@ -371,6 +372,33 @@
    footer .social-links li { margin-left: 14px; }   
 
 }
+
+
+@media only screen and (max-width: 350px) {
+
+   /* mobile navigation
+   -------------------------------------------------------------------- */
+   #nav-wrap ul#nav { width: auto; float: none; }
+
+   /* header styles
+   -------------------------------------------------------------------- */
+   header .banner { padding-top: 24px; }
+   header .banner-text h1 {
+      font-size: 3vw;
+      font: 20px/1.4em 'Anonymous Pro', sans-serif;      
+      margin: 0 auto 24px auto;
+   }
+   header .banner-text h3 {
+      font: 14px/1.9em 'librebaskerville-regular', sans-serif;
+      width: 90%;
+   }
+  
+   /* header social links */
+   header .social { font-size: 20px;}
+   header .social li { margin: 0 6px; }
+
+}
+
 
 
 
