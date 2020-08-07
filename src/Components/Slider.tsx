@@ -23,6 +23,8 @@ export class Slider extends Component<{ slides: JSX.Element[] }, SliderState> {
         this.handleScroll = this.handleScroll.bind(this);
     }
 
+    private nodeRef : React.RefObject<HTMLDivElement> = React.createRef();
+
     handleScroll(event: React.WheelEvent) {
         event.preventDefault();
 
@@ -77,10 +79,12 @@ export class Slider extends Component<{ slides: JSX.Element[] }, SliderState> {
                             mountOnEnter
                             unmountOnExit
                             key= {`slide-${index}`}
+                            nodeRef={this.nodeRef}
                         > 
                             <div onWheel={e => this.handleScroll(e)}
                                 className={this.state.currentSlide === index?  `slide active` : `slide-${index} slide`}
                                 key= {`slide-${index}-page`}
+                                ref={this.nodeRef}
                             >
                                 {slide}
                             </div>
