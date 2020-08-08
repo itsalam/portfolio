@@ -279,9 +279,6 @@ abbr:hover { cursor: help; }
 	color: inherit;
 }
 
-hr { border: solid #E3E3E3; border-width: 1px 0 0; clear: both; margin: 11px 0 30px; height: 0; }
-
-
 /*  3. Links  ------------------------------------------------------- */
 
 a, a:visited {

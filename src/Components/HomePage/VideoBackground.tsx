@@ -4,14 +4,23 @@ import anime from 'animejs';
 import './VideoBackground.scss';
 
 export const VideoBackground = () => {
+    var [height, setHeight] = React.useState<number>();
+    var [width, setWidth] = React.useState<number>();
+
+    const update = () => {
+        setHeight(window.innerHeight);
+        setWidth(window.innerWidth);
+    };
+
     useEffect(() => {
-        var player;
+        
+        var player: YT.Player;
         // @ts-ignore
         window.YT.ready( ()=> {
             player = new YT.Player('YouTubeBackgroundVideoPlayer', {
                 videoId: 'qt9jjQqJ3Wc', // YouTube Video ID
-                width: 1280,               // Player width (in px)
-                height: 720,              // Player height (in px)
+                width: width,    // Player width (in px)
+                height: height,              // Player height (in px)
                 playerVars: {
                     autoplay: 1,        // Auto-play the video on load
                     autohide: 1,
@@ -28,16 +37,16 @@ export const VideoBackground = () => {
                     playsinline: 1, // play inline on iOS
                 },
                 events: {
-                  onReady: function(e) {
+                  onReady: function(e :YT.PlayerEvent) {
+                      // @ts-ignore
                       e.target.mute();
                       e.target.setPlaybackQuality('hd1080');
                       e.target.playVideo();
                   },
                   onStateChange: function(e) {
-                   
                     if (e.data === 1) { // fade out #_buffering-background
                         anime({
-                           duration: 1000,
+                           duration: 30000,
                            targets: document.getElementById('_buffering-background'),
                            opacity: [1, 0],
                         })
@@ -49,12 +58,18 @@ export const VideoBackground = () => {
                         e.target.mute();
                         e.target.setPlaybackQuality('hd1080');
                         e.target.playVideo();
+                        anime({
+                            duration: 1000,
+                            targets: '._buffering-background',
+                            opacity: [0, 1],
+                         })
                     }
                   }
                 }
             });
         });
-        
+
+        window.addEventListener("resize", update);
       }
     );
 

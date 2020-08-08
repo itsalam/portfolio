@@ -29,7 +29,7 @@ body { background: #0f0f0f; }
 /* ------------------------------------------------------------------ */
 
 header {
-   position: relative;
+   position: fixed;
    height: 100vh;
    width: 100vw;
    background: #161415 url() no-repeat top center;
@@ -41,12 +41,7 @@ header {
 /* vertically center banner section */
 
 
-header .banner {
-   display: inline-block;
-   vertical-align: middle;
-   margin-top: 35vh;
-   text-align: center;
-}
+
 
 header .banner-text {
    height: 100%;
@@ -69,12 +64,7 @@ header .banner-text h3 span,
 header .banner-text h3 a {
    color: #fff;
 }
-header .banner-text hr {
-   width: 60%;
-   margin: 18px auto 24px auto;
-   border-color: #2F2D2E;
-   border-color: rgba(150, 150, 150, .1);
-}
+
 
 /* header social links */
 header .social {

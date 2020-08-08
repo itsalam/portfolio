@@ -20,12 +20,46 @@
   
 .title-text{
     width: fit-content;
-    margin: 0 auto;
+    margin: auto;
+    align-self: center;
+    z-index: 16;
+    transform: translateY(4vh);
 }
+
+header .banner-text hr {
+  max-width: 1020px;
+  width: 60%;
+  margin: 18px auto 24px auto;
+  border-color: #2F2D2E;
+  border-color: rgba(223, 223, 223, 0.25);
+}
+
+hr { border: solid #fffefe; border-width: 2px 0 0; clear: both; margin: 11px 0 30px; height: 0; }
 
 .banner-text {
   position: relative;
   margin: 0 auto;
+  z-index: 15;
+  align-self: center;
+}
+
+.title-text.completed{
+  
+}
+
+.subtitle{
+  opacity: 0;
+  z-index: 3;
+  transform: translateY(-4vh);
+}
+
+header .banner {
+  vertical-align: middle;
+  align-self: center;
+  transform: translateY(40vh);
   z-index: 5;
-  justify-content: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto
 }
