@@ -1,0 +1,31 @@
+  /* Animation */
+  .responsive-headline {
+    overflow: hidden;
+    border-right: .15em solid rgba(255,255,255,.75);
+    white-space: nowrap;
+    margin: 0 auto;
+    letter-spacing: .15em;
+    user-select: none;
+    animation: typewriter 2s steps(18) 1s 1 normal both,
+               blinkTextCursor 500ms steps(44) infinite normal;
+  }
+  @keyframes typewriter{
+    from{width: 100%;}
+    to{width: 100%;}
+  }
+  @keyframes blinkTextCursor{
+    from{border-right-color: rgba(255,255,255,.75);}
+    to{border-right-color: transparent;}
+  }
+  
+.title-text{
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.banner-text {
+  position: relative;
+  margin: 0 auto;
+  z-index: 5;
+  justify-content: center;
+}

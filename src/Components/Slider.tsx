@@ -46,9 +46,6 @@ export class Slider extends Component<{ slides: JSX.Element[] }, SliderState> {
                 targets: document.querySelectorAll(`.active`,),
                 translateY: [0, -100 * direction + "%"],
                 easing: "easeInOutQuart",
-                update: function(anim) {
-                    console.log(anim.progress);
-                  }
             }
             );
     
@@ -57,7 +54,7 @@ export class Slider extends Component<{ slides: JSX.Element[] }, SliderState> {
                 targets: document.querySelectorAll(`.slide-${target}`),
                 translateY: [100 * direction + "%", 0],
                 easing: "easeInOutQuart",
-                complete: () => { this.setState({isMoving: false, currentSlide: target}); console.log(this.state)}
+                complete: () => { this.setState({isMoving: false, currentSlide: target})}
             }
             );
         }, 0);

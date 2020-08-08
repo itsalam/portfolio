@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import HomePage from './Components/HomePage';
+import HomePage from './Components/HomePage/HomePage';
 import About from './Components/About';
 import Contact from './Components/Contact';
 import Footer from './Components/Footer';
