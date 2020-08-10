@@ -1,40 +1,31 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import anime from "animejs";
 import { Transition, TransitionGroup } from 'react-transition-group';
 import './Slider.css';
 
 
-type SliderState = {
-    currentSlide: number,
-    isMoving: boolean,
-    slideLength: number
-}
 
-export class Slider extends Component<{ slides: JSX.Element[] }, SliderState> {
-    public readonly state: Readonly<SliderState> = {
+export const Slider = (props: { slides: JSX.Element[] }) => {
+
+    const [slider, setSlider] = React.useState({
         currentSlide: 0,
         isMoving: false,
-        slideLength: this.props.slides.length
-    }
+        slideLength: props.slides.length
+    })
 
-    constructor(props: any) {
-        super(props);
-        this.handleScroll = this.handleScroll.bind(this);
-    }
+    const nodeRef : React.RefObject<HTMLDivElement> = React.createRef();
 
-    private nodeRef : React.RefObject<HTMLDivElement> = React.createRef();
-
-    handleScroll(event: React.WheelEvent) {
+    const handleScroll = (event: React.WheelEvent) => {
         event.preventDefault();
 
-        var length = this.state.slideLength;
+        var length = slider.slideLength;
         var scrollingDown = event.deltaY > 0;
         var direction = scrollingDown? 1: -1;
-        var oldSlide = this.state.currentSlide;
+        var oldSlide = slider.currentSlide;
         var target =  oldSlide + direction;
-        if (target < 0 || target >= length || this.state.isMoving) return;
+        if (target < 0 || target >= length || slider.isMoving) return;
         
-        this.setState({ isMoving: true });
+        setSlider({ ...slider, isMoving: true });
 
         setTimeout(()=> {
             anime({
@@ -50,40 +41,37 @@ export class Slider extends Component<{ slides: JSX.Element[] }, SliderState> {
                 targets: document.querySelectorAll(`.slide-${target}`),
                 translateY: [100 * direction + "%", 0],
                 easing: "easeInOutQuart",
-                complete: () => { this.setState({isMoving: false, currentSlide: target})}
+                complete: () => { setSlider({ ...slider, isMoving: false, currentSlide: target})}
             }
             );
         }, 0);
-        
-
-
     }
 
-    render() {
-        return (
-                <TransitionGroup className="slider">
-                    {this.props.slides.map((slide, index) => {
-                        return (
-                            <Transition
-                            timeout={2000}
-                            appear
-                            mountOnEnter
-                            unmountOnExit
-                            key= {`slide-${index}`}
-                            nodeRef={this.nodeRef}
-                        > 
-                            <div onWheel={e => this.handleScroll(e)}
-                                className={this.state.currentSlide === index?  `slide active` : `slide-${index} slide`}
-                                key= {`slide-${index}-page`}
-                                ref={this.nodeRef}
-                            >
-                                {slide}
-                            </div>
-                            
-                        </Transition>
-                        )
-                    })}
-                </TransitionGroup>
-        )
-    }
+    return (
+
+            <TransitionGroup className="slider">
+                {props.slides.map((slide, index) => {
+                    return (
+                        <Transition
+                        timeout={2000}
+                        appear
+                        mountOnEnter
+                        unmountOnExit
+                        key= {`slide-${index}`}
+                        nodeRef={nodeRef}
+                    > 
+                        <div onWheel={e => handleScroll(e)}
+                            className={slider.currentSlide === index?  `slide active` : `slide-${index} slide`}
+                            key= {`slide-${index}-page`}
+                            ref={nodeRef}
+                        >
+                            {slide}
+                        </div>
+                        
+                    </Transition>
+                    )
+                })}
+            </TransitionGroup>
+    )
+
 }

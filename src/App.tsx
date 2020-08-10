@@ -7,9 +7,10 @@ import Footer from './Components/Footer';
 import { PortfolioData } from './Models/portfolioData';
 import Header from './Components/Header/Header';
 import { Slider } from './Components/Slides/Slider';
+import { MainSlider } from 'Components/Slides/MainSlider';
 
 
-class App extends Component<{}, {slides: JSX.Element[], footer: JSX.Element}>{
+class App extends Component<{}, {slides: JSX.Element[]}>{
 
   async componentDidMount(){
     await this.getResumeData();
@@ -26,13 +27,19 @@ class App extends Component<{}, {slides: JSX.Element[], footer: JSX.Element}>{
           alert(response);
         }
         return response.json();
-      }).then(value => this.setState({
-        slides: [
-          <HomePage {...value} />,
-          <About {...value} />,
-          <Contact {...value} />
-        ]
-      }));
+      }).then(value => {
+        
+        const aboutPage = <About {...value} />;
+        const contactPage = <Contact {...value} />;
+        const subSlider = <Slider slides={[aboutPage, contactPage]}/>;
+        this.setState({
+          slides: [
+            <HomePage {...value} slider={subSlider} />,
+            <About {...value} />,
+            <Contact {...value} />
+          ]
+        });
+      });
     
   }
 
@@ -44,7 +51,7 @@ class App extends Component<{}, {slides: JSX.Element[], footer: JSX.Element}>{
     return (
       this.state? 
       <div className="App">
-        <Slider slides={this.state.slides}></Slider>
+        <MainSlider slides={this.state.slides}></MainSlider>
       </div>
       :
       <div></div>

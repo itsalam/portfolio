@@ -6,46 +6,38 @@ import { VideoBackground } from './VideoBackground';
 import { Title } from './Title';
 var particleData = require("particles.json");
 
-class HomePage extends Component<PortfolioData> {
+interface HomePageProps extends PortfolioData {
+   slider?: JSX.Element
+}
 
-   async componentDidMount() {
-      console.log(particleData);
-      await fetch('/resumeData.json')
-         .then(response => {
-            if (!response.ok) {
-               console.log(response);
-               alert(response);
-            }
-            return response.json();
-         }).then(value => this.setState({ ...value }));
-   }
+export const HomePage = (props: HomePageProps) => {
 
-   render() {
+   var networks = props.social ?
+      props.social.map(function (network) {
+         return <li key={network.name}><a href={network.url}><i className={network.className}></i></a></li>
+      })
+      :
+      null;
 
-      var data = this.props;
+   React.useEffect(() => {
+      console.log(props.slider);})
 
-      var networks = data.social ?
-         this.props.social.map(function (network) {
-            return <li key={network.name}><a href={network.url}><i className={network.className}></i></a></li>
-         })
-         :
-         null;
+   return (
+      <header id="home">
 
-      return (
-         <header id="home">
+         <VideoBackground/>
+         <Particles className="particles" params={particleData} />
 
-            <VideoBackground/>
-            <Particles className="particles" params={particleData} />
+         <Title titleStr={`Hi, I'm ${props.name}.`} networks={networks}></Title>
 
-            <Title titleStr={`Hi, I'm ${data.name}.`} networks={networks}></Title>
+         <p className="scrolldown">
+            <a className="smoothscroll" href="#about"><i className="icon-down-circle"></i></a>
+         </p>
+         <div className="subslider"></div>
+         {/* {props.slider? props.slider : null} */}
 
-            <p className="scrolldown">
-               <a className="smoothscroll" href="#about"><i className="icon-down-circle"></i></a>
-            </p>
-
-         </header>
-      );
-   }
+      </header>
+   );
 }
 
 export default HomePage;
