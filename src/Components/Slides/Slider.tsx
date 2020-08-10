@@ -1,8 +1,7 @@
-import React, { FunctionComponent, Component, useRef, Fragment } from 'react';
+import React, { Component } from 'react';
 import anime from "animejs";
 import { Transition, TransitionGroup } from 'react-transition-group';
 import './Slider.css';
-import Header from './Header/Header';
 
 
 type SliderState = {
@@ -37,9 +36,6 @@ export class Slider extends Component<{ slides: JSX.Element[] }, SliderState> {
         
         this.setState({ isMoving: true });
 
-        var updates = 0;
-
-        console.log(direction);
         setTimeout(()=> {
             anime({
                 duration: 400,
@@ -65,8 +61,6 @@ export class Slider extends Component<{ slides: JSX.Element[] }, SliderState> {
 
     render() {
         return (
-            <Fragment>
-                <Header/>
                 <TransitionGroup className="slider">
                     {this.props.slides.map((slide, index) => {
                         return (
@@ -90,7 +84,6 @@ export class Slider extends Component<{ slides: JSX.Element[] }, SliderState> {
                         )
                     })}
                 </TransitionGroup>
-                </Fragment>
         )
     }
 }

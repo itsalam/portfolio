@@ -6,14 +6,37 @@ import './VideoBackground.scss';
 export const VideoBackground = () => {
     var [height, setHeight] = React.useState<number>();
     var [width, setWidth] = React.useState<number>();
+    var [fading, setFading] = React.useState(false);
 
     const update = () => {
         setHeight(window.innerHeight);
         setWidth(window.innerWidth);
     };
 
+    const fadeInOut = () => {
+        setTimeout( () => 
+        anime.timeline({
+            duration: 2000,
+            targets: document.getElementById('_buffering-background'),
+        }).add({
+            easing: "easeOutQuad",
+            opacity: [0, 1],
+        }).add({
+            easing: "easeInQuad",
+            opacity: [1, 0],
+        }), 
+    29 * 1000) 
+    }
+
     useEffect(() => {
-        
+        const loadYoutubeAPI = async () => {const script = document.createElement("script");
+            script.src = "https://www.youtube.com/iframe_api";
+            script.async = true;
+            await document.body.appendChild(script)
+        };
+
+        loadYoutubeAPI();
+
         var player: YT.Player;
         // @ts-ignore
         window.YT.ready( ()=> {
@@ -31,10 +54,12 @@ export const VideoBackground = () => {
                     loop: 1,            // Run the video in a loop
                     fs: 0,              // Hide the full screen button
                     rel: 0,
+                    playlist: 'qt9jjQqJ3Wc',
                     enablejsapi: 1,
                     cc_load_policy: 0, // closed caption
                     iv_load_policy: 3, // annotations
                     playsinline: 1, // play inline on iOS
+                    origin: `${window.location.origin.toString()}`,
                 },
                 events: {
                   onReady: function(e :YT.PlayerEvent) {
@@ -42,27 +67,17 @@ export const VideoBackground = () => {
                       e.target.mute();
                       e.target.setPlaybackQuality('hd1080');
                       e.target.playVideo();
+                      setTimeout(() => anime({
+                        duration: 1000,
+                        easing: "easeInQuad",
+                        targets: document.getElementById('_buffering-background'),
+                        opacity: [1, 0],
+                     }), 1000);
+                     fadeInOut();
                   },
                   onStateChange: function(e) {
-                    if (e.data === 1) { // fade out #_buffering-background
-                        anime({
-                           duration: 30000,
-                           targets: document.getElementById('_buffering-background'),
-                           opacity: [1, 0],
-                        })
-                        // if (!this.state.title){
-                        //    this.showTitle();
-                        // }
-                    }
                     if (e.data === 0) { // loop video
-                        e.target.mute();
-                        e.target.setPlaybackQuality('hd1080');
-                        e.target.playVideo();
-                        anime({
-                            duration: 1000,
-                            targets: '._buffering-background',
-                            opacity: [0, 1],
-                         })
+                        fadeInOut();
                     }
                   }
                 }

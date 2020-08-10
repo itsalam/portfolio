@@ -590,7 +590,7 @@ input[type="checkbox"] { display: inline; }
 --------------------------------------------------------------- */
 .row {
    width: 96%;
-   max-width: 1020px;
+   max-width: 720px;
    margin: auto;
 }
 /* fixed width for IE8 */
@@ -751,7 +751,7 @@ properly.
 --------------------------------------------------------------- */
 @media only screen and (max-width: 460px) {
 
-   .row { width: auto; }
+   .row { width: 85%; }
 
 }
 

@@ -6,10 +6,10 @@ import Contact from './Components/Contact';
 import Footer from './Components/Footer';
 import { PortfolioData } from './Models/portfolioData';
 import Header from './Components/Header/Header';
-import { Slider } from './Components/Slider';
+import { Slider } from './Components/Slides/Slider';
 
 
-class App extends Component<{}, {slides: JSX.Element[]}>{
+class App extends Component<{}, {slides: JSX.Element[], footer: JSX.Element}>{
 
   async componentDidMount(){
     await this.getResumeData();

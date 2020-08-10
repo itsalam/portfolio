@@ -1,10 +1,9 @@
-import React, { useEffect, Fragment } from 'react';
+import React, { useEffect } from 'react';
 import "./Title.scss";
 import anime from 'animejs';
 
 export const Title = (props: { titleStr: string, networks: JSX.Element[] | null }) => {
     const [currentTitle, setCurrentTitle] = React.useState("");
-    const [titleCompleted, setTitleCompleted] = React.useState(false);
     const ref = React.createRef<HTMLDivElement>();
     const subtitle = (<div className="subtitle" ref={ref}>
         <h3> Hey don't look at this yet its not ready C: </h3>
@@ -22,22 +21,25 @@ export const Title = (props: { titleStr: string, networks: JSX.Element[] | null 
             setCurrentTitle(currentTitle + props.titleStr.charAt(currentTitle.length));
         }, anime.random(60, 95));
         if (currentTitle.length === props.titleStr.length) {
-            setTitleCompleted(true);
             anime({
-                duration: 500,
+                duration: 1000,
                 targets: ".title-text",
-                easing: "easeInCubic",
-                translateY: ["4vh", 0]
+                easing: "easeInOutCirc",
+                translateY: ["4vh", 0],
             }
             )
-            anime({
-                duration: 750,
+            anime.timeline({
+                duration: 1000,
                 targets: ".subtitle",
                 opacity: [0, 1],
-                easing: "easeInCubic",
-                translateY: ["-2vg", 0]
-            }
-            )
+                easing: "easeOutExpo",
+                translateY: ["-2vh", 0],
+                delay: 500,
+             }).add({
+                opacity: [0, 1],
+             }).add({
+                opacity: [1, 0],
+             })
         }
     }, [currentTitle, props.titleStr, props.networks])
 
