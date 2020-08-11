@@ -5,6 +5,14 @@
     z-index: 0;
 }
 
-
+#home .slider {
+    z-index: 10;
+    width: 48vw;
+    height: 95vh;
+    left: 51%;
+    top: 2.5%;
+    position: absolute;
+    transform: translatex(50vw);
+}
 
 

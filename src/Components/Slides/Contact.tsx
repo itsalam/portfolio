@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { PortfolioData } from '../Models/portfolioData';
+import { PortfolioData } from 'Models/portfolioData';
 
 class Contact extends Component<PortfolioData, {}> {
 

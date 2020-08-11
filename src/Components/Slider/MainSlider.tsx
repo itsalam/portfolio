@@ -2,11 +2,11 @@ import React, { useEffect } from 'react';
 import { Slider } from './Slider';
 
 const isWidescreen = () => {
-    console.log(window.innerWidth > 1280)
     return window.innerWidth > 1280;
 }
 
 export const MainSlider = (props: {slides: JSX.Element[]}) => {
+    const [isWide, setIsWide] = React.useState(isWidescreen());
     const [mainPage, setMainPage] = React.useState(props.slides[0]);
     const subSlides = React.useState(props.slides.slice(1));
 
@@ -15,16 +15,16 @@ export const MainSlider = (props: {slides: JSX.Element[]}) => {
     }) 
 
     const changeLayout = () => {
-        if(isWidescreen()){
-            setMainPage(React.cloneElement(mainPage,{...mainPage.props, subSlides}))
-        } else {
-            setMainPage(props.slides[0])
+        const currentIsWide: boolean = isWidescreen();
+        if(isWide !== currentIsWide){
+            setMainPage(currentIsWide? React.cloneElement(mainPage,{...mainPage.props, subSlides}) : props.slides[0])
+            setIsWide(currentIsWide);
         }
     }
 
     return (
         isWidescreen()? 
-        React.cloneElement(mainPage,{...mainPage.props, subSlides}):
+        mainPage:
         <Slider slides={props.slides}/>
     )
 }

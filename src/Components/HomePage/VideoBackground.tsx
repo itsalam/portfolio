@@ -7,6 +7,7 @@ export const VideoBackground = () => {
     var [height, setHeight] = React.useState<number>();
     var [width, setWidth] = React.useState<number>();
     var [fading, setFading] = React.useState(false);
+    var [scriptLoaded, setScriptLoaded] = React.useState(false);
 
     const update = () => {
         setHeight(window.innerHeight);
@@ -16,16 +17,17 @@ export const VideoBackground = () => {
     const fadeInOut = () => {
         setTimeout( () => 
         anime.timeline({
-            duration: 2000,
             targets: document.getElementById('_buffering-background'),
         }).add({
+            duration: 500,
             easing: "easeOutQuad",
             opacity: [0, 1],
         }).add({
+            duration: 1500,
             easing: "easeInQuad",
             opacity: [1, 0],
         }), 
-    29 * 1000) 
+        29500) 
     }
 
     useEffect(() => {
@@ -33,9 +35,10 @@ export const VideoBackground = () => {
             script.src = "https://www.youtube.com/iframe_api";
             script.async = true;
             await document.body.appendChild(script)
+            setScriptLoaded(true); 
         };
 
-        loadYoutubeAPI();
+        !scriptLoaded && loadYoutubeAPI();
 
         var player: YT.Player;
         // @ts-ignore
@@ -68,7 +71,8 @@ export const VideoBackground = () => {
                       e.target.setPlaybackQuality('hd1080');
                       e.target.playVideo();
                       setTimeout(() => anime({
-                        duration: 1000,
+                        duration: 2000,
+                        
                         easing: "easeInQuad",
                         targets: document.getElementById('_buffering-background'),
                         opacity: [1, 0],

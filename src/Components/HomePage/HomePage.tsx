@@ -4,10 +4,15 @@ import Particles from 'react-particles-js';
 import './HomePage.scss';
 import { VideoBackground } from './VideoBackground';
 import { Title } from './Title';
+import anime from 'animejs';
 var particleData = require("particles.json");
 
 interface HomePageProps extends PortfolioData {
    slider?: JSX.Element
+}
+
+const isWidescreen = () => {
+   return window.innerWidth > 1280;
 }
 
 export const HomePage = (props: HomePageProps) => {
@@ -22,20 +27,41 @@ export const HomePage = (props: HomePageProps) => {
    React.useEffect(() => {
       console.log(props.slider);})
 
+   const onTitleCompleted = () => {
+      if(isWidescreen()){
+         anime({
+            targets: [".banner"],
+            translateX: "-25vw",
+            duration: 1250,
+            easing: "easeOutCirc",
+            delay: 500
+         })
+         anime({
+            targets: [".slider"],
+            translateY: ["10vh", "0"],
+            opacity: [0, 1],
+            duration: 1500,
+            easing: "easeOutCirc",
+            delay: 1000
+         })
+      }
+   }
+
    return (
       <header id="home">
 
          <VideoBackground/>
          <Particles className="particles" params={particleData} />
 
-         <Title titleStr={`Hi, I'm ${props.name}.`} networks={networks}></Title>
+         <Title titleStr={`Hi, I'm ${props.name}.`} networks={networks} onTitleComplete={props.slider? onTitleCompleted : undefined}></Title>
 
-         <p className="scrolldown">
-            <a className="smoothscroll" href="#about"><i className="icon-down-circle"></i></a>
-         </p>
-         <div className="subslider"></div>
-         {/* {props.slider? props.slider : null} */}
-
+         {props.slider? 
+               props.slider
+            :
+            <p className="scrolldown">
+               <a className="smoothscroll" href="#about"><i className="icon-down-circle"></i></a>
+            </p>
+         }
       </header>
    );
 }

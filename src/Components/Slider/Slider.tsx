@@ -6,6 +6,7 @@ import './Slider.css';
 
 
 export const Slider = (props: { slides: JSX.Element[] }) => {
+    console.log(props.slides)
 
     const [slider, setSlider] = React.useState({
         currentSlide: 0,
@@ -17,6 +18,8 @@ export const Slider = (props: { slides: JSX.Element[] }) => {
 
     const handleScroll = (event: React.WheelEvent) => {
         event.preventDefault();
+
+        console.log("OH SHIT")
 
         var length = slider.slideLength;
         var scrollingDown = event.deltaY > 0;
@@ -48,7 +51,6 @@ export const Slider = (props: { slides: JSX.Element[] }) => {
     }
 
     return (
-
             <TransitionGroup className="slider">
                 {props.slides.map((slide, index) => {
                     return (
@@ -59,16 +61,15 @@ export const Slider = (props: { slides: JSX.Element[] }) => {
                         unmountOnExit
                         key= {`slide-${index}`}
                         nodeRef={nodeRef}
-                    > 
-                        <div onWheel={e => handleScroll(e)}
-                            className={slider.currentSlide === index?  `slide active` : `slide-${index} slide`}
-                            key= {`slide-${index}-page`}
-                            ref={nodeRef}
-                        >
-                            {slide}
-                        </div>
-                        
-                    </Transition>
+                        > 
+                            <div onWheel={e => handleScroll(e)}
+                                className={slider.currentSlide === index?  `slide active` : `slide-${index} slide`}
+                                key= {`slide-${index}-page`}
+                                ref={nodeRef}
+                            >
+                                {slide}
+                            </div>
+                        </Transition>
                     )
                 })}
             </TransitionGroup>

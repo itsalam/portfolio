@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { PortfolioData } from "../Models/portfolioData";
+import { PortfolioData } from "Models/portfolioData";
+import "./About.scss";
 
 class About extends Component<PortfolioData, {}> {
 
@@ -9,7 +10,9 @@ class About extends Component<PortfolioData, {}> {
 
       return (
          <section id="about">
-            <div className="row">
+            <h1> ABOUT </h1>
+            <h3> A new grad with an affinity of exploring all that programming has to offer. While I'm currently enjoy learning what modern front-end techonology can make (like this website), I'm eager to learn whatever else may interests me and makes me a strong asset in the field. </h3>
+            {/* <div className="row">
                <div className="three columns">
                   <img
                      className="profile-pic"
@@ -47,7 +50,7 @@ class About extends Component<PortfolioData, {}> {
                      </div>
                   </div>
                </div>
-            </div>
+            </div> */}
          </section>
       );
    }
