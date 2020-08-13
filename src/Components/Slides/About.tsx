@@ -11,7 +11,15 @@ class About extends Component<PortfolioData, {}> {
       return (
          <section id="about">
             <h1> ABOUT </h1>
-            <h3> A new grad with an affinity of exploring all that programming has to offer. While I'm currently enjoy learning what modern front-end techonology can make (like this website), I'm eager to learn whatever else may interests me and makes me a strong asset in the field. </h3>
+            <p> nuuuuuerrrrr huuuuuuuurrrrr duuuuurrrrr </p>
+
+            {/* <p> A new grad with an affinity of exploring all that programming has to offer. While I'm currently enjoying learning what modern front-end technology can make (like this website), I'm eager to learn whatever else may interest me and makes me a strong asset in my field. </p>
+            
+            <p>With work history in two Fortune 500 companies, I have experience in large enterprise development, as well as small scale applications and projects built for private utility to help teams across the company with what they need effectively. </p>
+
+            <p> A majority of my hobbies involve creating and building; currently things such as CGI graphics, computer builds, and cooking. I'm also passionate about fitness and health, especially calisthenics/body weight training. 
+
+            </p> */}
             {/* <div className="row">
                <div className="three columns">
                   <img

@@ -15,4 +15,12 @@
     transform: translatex(50vw);
 }
 
+.smoothscroll {
+    transform: translateY(4vh);
+    opacity: 0;
+    z-index: 3;
+    position: absolute;
+}
+
+
 

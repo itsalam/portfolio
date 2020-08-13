@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { PortfolioData } from '../../Models/portfolioData';
 import Particles from 'react-particles-js';
 import './HomePage.scss';
@@ -16,6 +16,8 @@ const isWidescreen = () => {
 }
 
 export const HomePage = (props: HomePageProps) => {
+   const [sliderHidden, setSliderHidden] = React.useState(true);
+   const [titleAnimationComplete, setTitleAnimationComplete] = React.useState(false);
 
    var networks = props.social ?
       props.social.map(function (network) {
@@ -24,39 +26,46 @@ export const HomePage = (props: HomePageProps) => {
       :
       null;
 
-   React.useEffect(() => {
-      console.log(props.slider);})
-
-   const onTitleCompleted = () => {
-      if(isWidescreen()){
+   const showSlider = () => {
+      if(isWidescreen() && sliderHidden && titleAnimationComplete){
+         setSliderHidden(false);
          anime({
             targets: [".banner"],
             translateX: "-25vw",
             duration: 1250,
             easing: "easeOutCirc",
-            delay: 500
+         })
+         anime({
+            targets: [".smoothscroll"],
+            translateY: "10vw",
+            duration: 4000,
+            easing: "easeOutCirc",
          })
          anime({
             targets: [".slider"],
             translateY: ["10vh", "0"],
             opacity: [0, 1],
             duration: 1500,
-            easing: "easeOutCirc",
-            delay: 1000
+            easing: "easeOutCirc"
          })
       }
    }
 
    return (
-      <header id="home">
+      <header id="home" onWheel={props.slider? showSlider : undefined}>
 
          <VideoBackground/>
          <Particles className="particles" params={particleData} />
 
-         <Title titleStr={`Hi, I'm ${props.name}.`} networks={networks} onTitleComplete={props.slider? onTitleCompleted : undefined}></Title>
+         <Title titleStr={`Hi, I'm ${props.name}.`} networks={networks} onTitleComplete={() => {setTitleAnimationComplete(true)}}></Title>
 
-         {props.slider? 
-               props.slider
+         {props.slider?
+               <Fragment>
+                  {props.slider}
+                  <p className="scrolldown">
+                     <a className="smoothscroll" onClick={showSlider} href="#about"><i className="icon-down-circle"></i></a>
+                  </p>
+               </Fragment> 
             :
             <p className="scrolldown">
                <a className="smoothscroll" href="#about"><i className="icon-down-circle"></i></a>

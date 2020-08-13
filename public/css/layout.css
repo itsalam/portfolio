@@ -49,8 +49,7 @@ header .banner-text {
 header .banner-text h1 {
    font: 40px/1.1em 'Anonymous Pro', sans-serif;
    color: #fff;
-   letter-spacing: -2px;
-   margin: 0 auto 18px auto;
+   letter-spacing: -1px;
    text-shadow: 0px 1px 3px rgba(0, 0, 0, .8);
 }
 header .banner-text h3 {
@@ -96,10 +95,6 @@ header .scrolldown a {
    color: #fff;
    border-radius: 100%;
 
-   -webkit-transition: all .3s ease-in-out;
-   -moz-transition: all .3s ease-in-out;
-   -o-transition: all .3s ease-in-out;
-   transition: all .3s ease-in-out;
 }
 header .scrolldown a:hover { color: #11ABB0; }
 

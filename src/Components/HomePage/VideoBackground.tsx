@@ -97,7 +97,7 @@ export const VideoBackground = () => {
         in={true}
         timeout={10000}>
         <div className="video-background">
-           {/* <div className="pattern-overlay"></div> */}
+           <div className="pattern-overlay"></div>
            <div id="_buffering-background"></div>
            <div className="video-foreground" id="YouTubeBackgroundVideoPlayer">
            </div>

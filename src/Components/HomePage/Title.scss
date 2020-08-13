@@ -1,17 +1,12 @@
   /* Animation */
   .responsive-headline {
+    display:inline-block;
+    min-width: 10px;
     overflow: hidden;
-    border-right: .15em solid rgba(255,255,255,.75);
     white-space: nowrap;
     margin: 0 auto;
     letter-spacing: .15em;
     user-select: none;
-    animation: typewriter 2s steps(18) 1s 1 normal both,
-               blinkTextCursor 500ms steps(44) infinite normal;
-  }
-  @keyframes typewriter{
-    from{width: 100%;}
-    to{width: 100%;}
   }
   @keyframes blinkTextCursor{
     from{border-right-color: rgba(255,255,255,.75);}
@@ -19,11 +14,18 @@
   }
   
 .title-text{
+    padding-right: 5px;
+    height:40px;
+    min-width: 10px;
     width: fit-content;
     margin: auto;
     align-self: center;
-    z-index: 16;
+    z-index: 4;
     transform: translateY(4vh);
+    margin: 0 auto 8px auto;
+    
+    border-right: .15em solid rgba(255,255,255,.75);
+    animation: blinkTextCursor 500ms steps(44) infinite normal;
 }
 
 header .banner-text hr {
