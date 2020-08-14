@@ -157,8 +157,8 @@ body {
 --------------------------------------------------------------------- */
 
 h1, h2, h3, h4, h5, h6 {
-   color: #818181;
-	font-family: 'opensans-bold', sans-serif;
+   color: #d8d8d8;
+	font-family: 'Anonymous Pro', sans-serif;
    font-weight: normal;
 }
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a { font-weight: inherit; }

@@ -3,9 +3,11 @@
     height: 100%;
     overflow: hidden;
     position:relative;
+    background-color: transparent;
 }
 
 .slide {
+    display: flex;
     overflow: hidden;
     will-change: transform;
     transform: translateY(100%);
