@@ -2,11 +2,13 @@ import React, { Component, useEffect } from 'react';
 import anime from "animejs";
 import { Transition, TransitionGroup } from 'react-transition-group';
 import './Slider.css';
+import { swapSlide } from "State/actions";
+import { connect } from 'react-redux';
 
+const Slider = (props: { slides: JSX.Element[], swapSlide: Function, disabled?:Boolean}) => {
 
-
-export const Slider = (props: { slides: JSX.Element[] }) => {
-    console.log(props.slides)
+    React.useEffect(()=> 
+    props.slides.forEach( slide => console.log(slide.)))
 
     const [slider, setSlider] = React.useState({
         currentSlide: 0,
@@ -17,10 +19,6 @@ export const Slider = (props: { slides: JSX.Element[] }) => {
     const nodeRef : React.RefObject<HTMLDivElement> = React.createRef();
 
     const handleScroll = (event: React.WheelEvent) => {
-        event.preventDefault();
-
-        console.log("OH SHIT")
-
         var length = slider.slideLength;
         var scrollingDown = event.deltaY > 0;
         var direction = scrollingDown? 1: -1;
@@ -29,7 +27,6 @@ export const Slider = (props: { slides: JSX.Element[] }) => {
         if (target < 0 || target >= length || slider.isMoving) return;
         
         setSlider({ ...slider, isMoving: true });
-
         setTimeout(()=> {
             anime({
                 duration: 400,
@@ -44,13 +41,17 @@ export const Slider = (props: { slides: JSX.Element[] }) => {
                 targets: document.querySelectorAll(`.slide-${target}`),
                 translateY: [100 * direction + "%", 0],
                 easing: "easeInOutQuart",
-                complete: () => { setSlider({ ...slider, isMoving: false, currentSlide: target})}
+                complete: () => { 
+                    setSlider({ ...slider, isMoving: false, currentSlide: target}); 
+                    props.swapSlide(target);}
             }
             );
         }, 0);
+
     }
 
     return (
+        props.disabled? props.slides[0] :
             <TransitionGroup className="slider">
                 {props.slides.map((slide, index) => {
                     return (
@@ -67,12 +68,13 @@ export const Slider = (props: { slides: JSX.Element[] }) => {
                                 key= {`slide-${index}-page`}
                                 ref={nodeRef}
                             >
-                                {slide}
+                                {React.cloneElement(slide, {...slide.props, key: index})}
                             </div>
                         </Transition>
                     )
                 })}
             </TransitionGroup>
     )
-
 }
+
+export default connect((a,b)=>({...b}), {swapSlide})(Slider);

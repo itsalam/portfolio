@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import "./App.css";
-import HomePage from "./Components/HomePage/HomePage";
+import HomePage from "./Components/HomePage/";
 import About from "./Components/Slides/About";
 import Contact from "./Components/Slides/Contact";
-import { Slider } from "./Components/Slider/Slider";
+import Slider from "./Components/Slider/Slider";
 import { MainSlider } from "Components/Slider/MainSlider";
 import { VideoBackground } from "Components/Background/VideoBackground";
 
@@ -22,13 +22,13 @@ class App extends Component<{}, { slides: JSX.Element[] }> {
         return response.json();
       })
       .then((value) => {
-        const aboutPage = <About {...value} />;
+        const aboutPage = <About data={value}/>;
         const contactPage = <Contact {...value} />;
         const subSlider = <Slider slides={[aboutPage, contactPage]} />;
         this.setState({
           slides: [
             <HomePage {...value} slider={subSlider} />,
-            <About {...value} />,
+            <About data={value} />,
             <Contact {...value} />,
           ],
         });

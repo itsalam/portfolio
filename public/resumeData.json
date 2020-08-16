@@ -26,5 +26,36 @@
       "url": "https://github.com/itsalam",
       "className": "fa fa-github"
     }
+  ],
+  "tools": [
+    {
+      "name": "python",
+      "path": "images/logos/python.svg"
+    },
+    {
+      "name": "c#",
+      "path": "images/logos/dot-net.svg"
+    },
+    {
+      "name": "react",
+      "path": "images/logos/react.svg"
+    },
+    {
+      "name": "typescript",
+      "path": "images/logos/typescript.svg"
+    },
+    {
+      "name": "spring",
+      "path": "images/logos/spring.svg"
+    },
+    {
+      "name": "serverless",
+      "path": "images/logos/serverless.svg"
+    }, 
+    {
+      "name": "keras",
+      "path": "images/logos/keras.svg"
+    }
+
   ]
 }

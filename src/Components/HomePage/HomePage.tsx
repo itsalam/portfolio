@@ -3,14 +3,14 @@ import { PortfolioData } from "../../Models/portfolioData";
 import "./HomePage.scss";
 import anime from "animejs";
 import { Title } from "./Title";
+import { playSlide } from "State/actions";
+import { connect } from "react-redux";
+import { isWideScreen } from "Helpers/functions";
 
 interface HomePageProps extends PortfolioData {
+  playSlide: Function;
   slider?: JSX.Element;
 }
-
-const isWidescreen = () => {
-  return window.innerWidth > 1280;
-};
 
 export const HomePage = (props: HomePageProps) => {
   const [sliderHidden, setSliderHidden] = React.useState(true);
@@ -29,18 +29,18 @@ export const HomePage = (props: HomePageProps) => {
     : null;
 
   const showSlider = () => {
-    if (isWidescreen() && sliderHidden && titleAnimationComplete) {
+    if (isWideScreen() && sliderHidden && titleAnimationComplete) {
       setSliderHidden(false);
       anime({
         targets: [".banner"],
-        translateX: "-25vw",
+        translateX: "-27.5vw",
         duration: 1250,
         easing: "easeOutCirc",
       });
       anime({
         targets: [".smoothscroll"],
         translateY: "10vw",
-        duration: 4000,
+        duration: 1500,
         easing: "easeOutCirc",
       });
       anime({
@@ -49,12 +49,13 @@ export const HomePage = (props: HomePageProps) => {
         opacity: [0, 1],
         duration: 1500,
         easing: "easeOutCirc",
+        begin: ()=> {props.playSlide(0)}
       });
     }
   };
 
   return (
-    <header id="home" onWheel={isWidescreen() ? showSlider : undefined}>
+    <header id="home" onWheel={isWideScreen() ? showSlider : undefined}>
       <Title
         titleStr={`Hi, I'm ${props.name}.`}
         networks={networks}
@@ -63,7 +64,7 @@ export const HomePage = (props: HomePageProps) => {
         }}
       ></Title>
 
-      {isWidescreen() ? (
+      {isWideScreen() ? (
         <Fragment>
           {props.slider}
           <p className="scrolldown">
@@ -74,7 +75,7 @@ export const HomePage = (props: HomePageProps) => {
         </Fragment>
       ) : (
         <p className="scrolldown">
-          <a className="smoothscroll" href="#about">
+          <a className="smoothscroll"  href="#about">
             <i className="icon-down-circle"></i>
           </a>
         </p>
@@ -83,4 +84,4 @@ export const HomePage = (props: HomePageProps) => {
   );
 };
 
-export default HomePage;
+export default connect(null, { playSlide })(HomePage);

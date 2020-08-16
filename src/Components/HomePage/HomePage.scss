@@ -1,14 +1,17 @@
 
 
 #home .slider {
+    transform: translateX(100vw);
     z-index: 10;
     width: 48vw;
     height: 95vh;
-    left: 51%;
+    right: 5vw;
     top: 2.5%;
     position: absolute;
-    transform: translatex(50vw);
+    opacity: 0
 }
+
+
 
 .smoothscroll {
     transform: translateY(4vh);

@@ -16,6 +16,12 @@ export interface PortfolioData {
     website: string,
     resumeDownload: string,
     social: [socialData]
+    tools: [toolData]
+}
+
+interface toolData {
+  name: string,
+  path: string
 }
 
 interface socialData {
