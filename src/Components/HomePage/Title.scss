@@ -15,14 +15,13 @@
   
 .title-text{
     padding-right: 5px;
-    height:40px;
     min-width: 10px;
     width: fit-content;
     margin: auto;
     align-self: center;
     z-index: 4;
     transform: translateY(4vh);
-    margin: 0 auto 8px auto;
+    margin: 0 auto 0 auto;
     
     border-right: .15em solid rgba(255,255,255,.75);
     animation: blinkTextCursor 500ms steps(44) infinite normal;
@@ -39,7 +38,7 @@ header .banner-text hr {
 hr { border: solid #fffefe; border-width: 2px 0 0; clear: both; margin: 11px 0 30px; height: 0; }
 
 .banner-text {
-  position: relative;
+  position: fixed;
   margin: 0 auto;
   z-index: 15;
   align-self: center;
@@ -61,6 +60,4 @@ header .banner {
   top: (40vh);
   z-index: 5;
   position: absolute;
-  left: 0;
-  right: 0;
 }

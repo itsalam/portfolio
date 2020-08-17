@@ -8,11 +8,11 @@ export enum ACTIONS {
 export interface SlideState {
     currentSlide?: number;
     playSlide?: number;
-    slides?: {};
+    slides: {[id:string]: number};
 }
 
 export interface SlideAction extends SlideState{
     type: ACTIONS
     key: number,
-    slideName: String
+    slideName: string
 }

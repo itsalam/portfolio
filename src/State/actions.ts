@@ -23,7 +23,7 @@ export const resetPlaySlide = () => {
   
 export const registerSlide = (slideName: String, key: number) => {
   return {
-      type:ACTIONS.REGISTER_SLIDES,
+      type:ACTIONS.REGISTER_SLIDE,
       slideName,
       key,
   }

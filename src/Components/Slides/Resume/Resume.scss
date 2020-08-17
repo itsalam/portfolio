@@ -1,0 +1,38 @@
+#resume {
+  width: 96%;
+  height: 96%;
+  background: rgba(29, 29, 29, 0.568);
+  margin: auto;
+  overflow: clip;
+  vertical-align: middle;
+}
+
+#resumePdf {
+    width: 55%;
+    height: 75%;
+}
+
+.about-title {
+    margin: 3%;
+  }
+  
+  .about-title h1 {
+    overflow: hidden;
+  }
+  
+  .text {
+    font-size: small;
+    overflow: hidden;
+    height: fit-content;
+  }
+  
+  #resume hr {
+    width: 10%;
+    margin: auto;
+    border-width: 5px 0 0;
+  }
+
+  #pdfDiv {
+      height: inherit;
+      width: inherit;
+  }

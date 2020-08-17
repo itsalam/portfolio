@@ -33,7 +33,7 @@ export const HomePage = (props: HomePageProps) => {
       setSliderHidden(false);
       anime({
         targets: [".banner"],
-        translateX: "-27.5vw",
+        translateX: "-26.5vw",
         duration: 1250,
         easing: "easeOutCirc",
       });

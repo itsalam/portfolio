@@ -2,14 +2,10 @@ import React, { Component, useEffect } from 'react';
 import anime from "animejs";
 import { Transition, TransitionGroup } from 'react-transition-group';
 import './Slider.css';
-import { swapSlide } from "State/actions";
+import { swapSlide, playSlide } from "State/actions";
 import { connect } from 'react-redux';
 
-const Slider = (props: { slides: JSX.Element[], swapSlide: Function, disabled?:Boolean}) => {
-
-    React.useEffect(()=> 
-    props.slides.forEach( slide => console.log(slide.)))
-
+const Slider = (props: { slides: JSX.Element[], playSlide: Function, disabled?:Boolean}) => {
     const [slider, setSlider] = React.useState({
         currentSlide: 0,
         isMoving: false,
@@ -43,7 +39,7 @@ const Slider = (props: { slides: JSX.Element[], swapSlide: Function, disabled?:B
                 easing: "easeInOutQuart",
                 complete: () => { 
                     setSlider({ ...slider, isMoving: false, currentSlide: target}); 
-                    props.swapSlide(target);}
+                    props.playSlide(target);}
             }
             );
         }, 0);
@@ -68,7 +64,7 @@ const Slider = (props: { slides: JSX.Element[], swapSlide: Function, disabled?:B
                                 key= {`slide-${index}-page`}
                                 ref={nodeRef}
                             >
-                                {React.cloneElement(slide, {...slide.props, key: index})}
+                                {React.cloneElement(slide, {...slide.props, index})}
                             </div>
                         </Transition>
                     )
@@ -77,4 +73,4 @@ const Slider = (props: { slides: JSX.Element[], swapSlide: Function, disabled?:B
     )
 }
 
-export default connect((a,b)=>({...b}), {swapSlide})(Slider);
+export default connect((a,b)=>({...b}), {playSlide})(Slider);

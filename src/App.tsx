@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import "./App.css";
 import HomePage from "./Components/HomePage/";
-import About from "./Components/Slides/About";
+import About from "./Components/Slides/About/About";
 import Contact from "./Components/Slides/Contact";
 import Slider from "./Components/Slider/Slider";
 import { MainSlider } from "Components/Slider/MainSlider";
 import { VideoBackground } from "Components/Background/VideoBackground";
+import { Resume } from "Components/Slides/Resume/Resume";
 
 class App extends Component<{}, { slides: JSX.Element[] }> {
   async componentDidMount() {
@@ -24,12 +25,14 @@ class App extends Component<{}, { slides: JSX.Element[] }> {
       .then((value) => {
         const aboutPage = <About data={value}/>;
         const contactPage = <Contact {...value} />;
-        const subSlider = <Slider slides={[aboutPage, contactPage]} />;
+        const resumePage = <Resume data={value}/>
+        const subSlider = <Slider slides={[aboutPage, resumePage, contactPage]} />;
         this.setState({
           slides: [
             <HomePage {...value} slider={subSlider} />,
-            <About data={value} />,
-            <Contact {...value} />,
+            aboutPage,
+            resumePage,
+            contactPage,
           ],
         });
       });

@@ -1,3 +1,3 @@
 export const isWideScreen = () => {
-    return window.innerWidth > 1280;
+    return window.innerWidth > 960;
 }
