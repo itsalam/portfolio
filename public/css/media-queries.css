@@ -16,7 +16,7 @@
    header .banner-text h1 {
       font: 40px/1.1em 'Anonymous Pro', sans-serif;
       letter-spacing: -1px;
-      margin: 0 auto 12px auto;
+      margin: 0 auto 0 auto;
    }
 
 }
@@ -33,7 +33,7 @@
       letter-spacing: -1px;      
    }
    header .banner-text h3 {
-      font: 17px/1.9em 'librebaskerville-regular', serif;
+      font: 17px/1.9em 'Anonymous Pro', monospace;
       width: 80%;
    }
    header .banner-text hr {
@@ -193,7 +193,7 @@
    }
    header .banner-text h1 { font: 40px/1.1em 'Anonymous Pro', sans-serif; }
    header .banner-text h3 {
-      font: 16px/1.9em 'librebaskerville-regular', serif;
+      font: 16px/1.9em 'Anonymous Pro', monospace;
       width: 85%;
    }
    header .banner-text hr {
@@ -355,7 +355,7 @@
       margin: 0 auto 0 auto;
    }
    header .banner-text h3 {
-      font: 14px/1.9em 'librebaskerville-regular', sans-serif;
+      font: 16px/0.9em 'Anonymous Pro', monospace;
       width: 90%;
    }
   
@@ -385,7 +385,7 @@
    header .banner-text h1 {
       font-size: 3vw;
       font: 20px/1.4em 'Anonymous Pro', sans-serif;      
-      margin: 0 auto 24px auto;
+      margin: 0 auto 0 auto;
    }
    header .banner-text h3 {
       font: 14px/1.9em 'librebaskerville-regular', sans-serif;

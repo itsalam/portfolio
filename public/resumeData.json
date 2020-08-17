@@ -51,11 +51,6 @@
     {
       "name": "serverless",
       "path": "images/logos/serverless.svg"
-    }, 
-    {
-      "name": "keras",
-      "path": "images/logos/keras.svg"
     }
-
   ]
 }
