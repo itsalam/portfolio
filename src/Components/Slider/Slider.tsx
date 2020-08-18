@@ -4,6 +4,7 @@ import { Transition, TransitionGroup } from 'react-transition-group';
 import './Slider.css';
 import { swapSlide, playSlide } from "State/actions";
 import { connect } from 'react-redux';
+import { isWideScreen } from 'Helpers/functions';
 
 const Slider = (props: { slides: JSX.Element[], playSlide: Function, disabled?:Boolean}) => {
     const [slider, setSlider] = React.useState({
@@ -64,7 +65,9 @@ const Slider = (props: { slides: JSX.Element[], playSlide: Function, disabled?:B
                                 key= {`slide-${index}-page`}
                                 ref={nodeRef}
                             >
+                                <div className={(!isWideScreen() && index === 0) ? "main":""} id="background">
                                 {React.cloneElement(slide, {...slide.props, index})}
+                                </div>
                             </div>
                         </Transition>
                     )
