@@ -8,27 +8,19 @@ import { resetPlaySlide, registerSlide } from "State/actions";
 import { isWideScreen } from "Helpers/functions";
 
 export const About = (props: {
+  name: String;
   data: PortfolioData;
   slideState?: SlideState;
   index?: number;
   resetPlaySlide?: Function;
   registerSlide?: Function;
 }) => {
-  const [isRegistered, setRegistered] = React.useState(false);
 
   React.useEffect(() => {
     if (props.slideState?.playSlide === props.index) {
       playAnimation(0);
     }
   });
-
-  React.useEffect(() => {
-    console.log(props);
-    !!isRegistered &&
-      props.registerSlide &&
-      props.registerSlide("about", props.index);
-    setRegistered(true);
-  }, [isRegistered]);
 
   const playAnimation = (delay: number) => {
     console.log(props);
@@ -109,6 +101,8 @@ export const About = (props: {
     </div>
   );
 };
+
+About.displayName = "About";
 
 export default connect(
   (state: { slideState: SlideState }, ownProps) => ({

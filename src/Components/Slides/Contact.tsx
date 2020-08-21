@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import { PortfolioData } from 'Models/portfolioData';
 
-class Contact extends Component<PortfolioData, {}> {
+const Contact = (props: {data: PortfolioData, name: String}) => {
 
-   handleChange(){
-      //Email back info
-   }
+      const data = props.data;
 
-   render() {
-
-      const data = this.props;
+      const handleChange = () => {
+         
+      }
 
       return (
          <section id="contact">
@@ -22,15 +20,15 @@ class Contact extends Component<PortfolioData, {}> {
                      <fieldset>
                         <div>
                            <label htmlFor="contactName">Name <span className="required">*</span></label>
-                           <input type="text" defaultValue="" size={35} id="contactName" name="contactName" onChange={this.handleChange} />
+                           <input type="text" defaultValue="" size={35} id="contactName" name="contactName" onChange={handleChange} />
                         </div>
                         <div>
                            <label htmlFor="contactEmail">Email <span className="required">*</span></label>
-                           <input type="text" defaultValue="" size={35} id="contactEmail" name="contactEmail" onChange={this.handleChange} />
+                           <input type="text" defaultValue="" size={35} id="contactEmail" name="contactEmail" onChange={handleChange} />
                         </div>
                         <div>
                            <label htmlFor="contactSubject">Subject</label>
-                           <input type="text" defaultValue="" size={35} id="contactSubject" name="contactSubject" onChange={this.handleChange} />
+                           <input type="text" defaultValue="" size={35} id="contactSubject" name="contactSubject" onChange={handleChange} />
                         </div>
                         <div>
                            <label htmlFor="contactMessage">Message <span className="required">*</span></label>
@@ -65,6 +63,6 @@ class Contact extends Component<PortfolioData, {}> {
          </section>
       );
    }
-}
+
 
 export default Contact;

@@ -7,7 +7,9 @@ import { playSlide } from "State/actions";
 import { connect } from "react-redux";
 import { isWideScreen } from "Helpers/functions";
 
-interface HomePageProps extends PortfolioData {
+interface HomePageProps {
+  name: String;
+  data: PortfolioData;
   playSlide: Function;
   slider?: JSX.Element;
 }
@@ -16,8 +18,8 @@ export const HomePage = (props: HomePageProps) => {
   const [sliderHidden, setSliderHidden] = React.useState(true);
   const [titleAnimationComplete, setTitleAnimationComplete] = React.useState(false);
 
-  var networks = props.social
-    ? props.social.map(function (network) {
+  var networks = props.data.social
+    ? props.data.social.map(function (network) {
         return (
           <li key={network.name}>
             <a href={network.url}>
@@ -33,7 +35,7 @@ export const HomePage = (props: HomePageProps) => {
       setSliderHidden(false);
       anime({
         targets: [".banner"],
-        translateX: "-26.5vw",
+        translateX: "-27.5%",
         duration: 1250,
         easing: "easeOutCirc",
       });
@@ -57,7 +59,7 @@ export const HomePage = (props: HomePageProps) => {
   return (
     <header id="home" onWheel={isWideScreen() ? showSlider : undefined}>
       <Title
-        titleStr={`Hi, I'm ${props.name}.`}
+        titleStr={`Hi, I'm ${props.data.name}.`}
         networks={networks}
         onTitleComplete={() => {
           setTitleAnimationComplete(true);

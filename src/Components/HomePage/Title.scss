@@ -56,8 +56,9 @@ header .social {
 
 header .banner {
   vertical-align: middle;
-  align-self: center;
   top: (40vh);
-  z-index: 5;
-  position: absolute;
+  position: relative;
+  margin: 0 auto;
+  z-index: 15;
+  align-self: center;
 }

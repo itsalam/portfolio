@@ -2,7 +2,7 @@ import React from "react";
 import { PortfolioData } from "Models/portfolioData";
 import "./Resume.scss";
 
-export const Resume = (props:{data: PortfolioData})=> {
+export const Resume = (props:{data: PortfolioData, name: String})=> {
     return(
         <div id="resume">
             <div className="about-title">

@@ -2,10 +2,10 @@ import React, { Component, useEffect } from 'react';
 import anime from "animejs";
 import { Transition, TransitionGroup } from 'react-transition-group';
 import './Slider.css';
-import { swapSlide, playSlide } from "State/actions";
+import { registerSlide, playSlide } from "State/actions";
 import { connect } from 'react-redux';
 
-const Slider = (props: { slides: JSX.Element[], playSlide: Function, disabled?:Boolean}) => {
+const Slider = (props: { slides: JSX.Element[], playSlide: Function, registerSlide:Function, disabled?:Boolean}) => {
     const [slider, setSlider] = React.useState({
         currentSlide: 0,
         isMoving: false,
@@ -50,6 +50,7 @@ const Slider = (props: { slides: JSX.Element[], playSlide: Function, disabled?:B
         props.disabled? props.slides[0] :
             <TransitionGroup className="slider">
                 {props.slides.map((slide, index) => {
+                    props.registerSlide(slide.props.name, index);
                     return (
                         <Transition
                         timeout={2000}
@@ -73,4 +74,4 @@ const Slider = (props: { slides: JSX.Element[], playSlide: Function, disabled?:B
     )
 }
 
-export default connect((a,b)=>({...b}), {playSlide})(Slider);
+export default connect((a,b)=>({...b}), {playSlide, registerSlide})(Slider);

@@ -8,7 +8,7 @@ export const Title = (props: { titleStr: string, networks: JSX.Element[] | null,
     const ref = React.createRef<HTMLDivElement>();
 
     useEffect(() => {
-        const cursorSpeed = currentTitle? anime.random(80, 125) : 1000;
+        const cursorSpeed = currentTitle? anime.random(80, 100) : 1000;
         setTimeout(() => {
             setCurrentTitle(currentTitle + props.titleStr.charAt(currentTitle.length));
         }, cursorSpeed);
@@ -39,7 +39,7 @@ export const Title = (props: { titleStr: string, networks: JSX.Element[] | null,
                 targets: "#linebreak",
                 width: {
                     easing: "easeOutQuint",
-                    value: "100%",
+                    value: "45%",
                     delay: 500,
                     duration: 750,
                 },
@@ -77,8 +77,7 @@ export const Title = (props: { titleStr: string, networks: JSX.Element[] | null,
     }, [animationComplete, currentTitle, props])
 
     return (
-        <div className="row banner">
-            <div className={"banner-text"}>
+        <div className="row banner banner-text">
                 <div className={"title-text"}>
                     <h1 className="responsive-headline" id="title">{currentTitle}</h1>
                 </div>
@@ -89,7 +88,6 @@ export const Title = (props: { titleStr: string, networks: JSX.Element[] | null,
                         {props.networks}
                     </ul>
                 </div>
-            </div>
         </div>
     )
 }

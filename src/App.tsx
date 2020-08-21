@@ -23,13 +23,13 @@ class App extends Component<{}, { slides: JSX.Element[] }> {
         return response.json();
       })
       .then((value) => {
-        const aboutPage = <About data={value}/>;
-        const contactPage = <Contact {...value} />;
-        const resumePage = <Resume data={value}/>
+        const aboutPage = <About data={value} name="About"/>;
+        const contactPage = <Contact data={value} name="Contact"/>;
+        const resumePage = <Resume data={value} name="Resume"/>
         const subSlider = <Slider slides={[aboutPage, resumePage, contactPage]} />;
         this.setState({
           slides: [
-            <HomePage {...value} slider={subSlider} />,
+            <HomePage name="Home" data={value} slider={subSlider} />,
             aboutPage,
             resumePage,
             contactPage,

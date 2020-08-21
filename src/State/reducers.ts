@@ -3,13 +3,13 @@ import { combineReducers } from "redux";
 
 
 
-function slideReducer (state:SlideState = {currentSlide: 0, slides: {}}, action: SlideAction){
+function slideReducer (state:SlideState = {activeSlide: 0, slides: new Map()}, action: SlideAction){
     console.log(state, action);
     switch(action.type) {
         case ACTIONS.SWAP_SLIDE: {
             return {
                 ...state,
-                currentSlide: action.currentSlide
+                currentSlide: action.activeSlide
             }
         }
         case ACTIONS.PLAY_SLIDE: {
@@ -19,7 +19,8 @@ function slideReducer (state:SlideState = {currentSlide: 0, slides: {}}, action:
             }
         }
         case ACTIONS.REGISTER_SLIDE: {
-            state.slides[action.slideName] = action.key;
+            state.slides.set(action.slideName, action.key);
+            console.log(state);
             return {
                 ...state
             }

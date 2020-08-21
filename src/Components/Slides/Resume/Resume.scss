@@ -33,6 +33,11 @@
   }
 
   #pdfDiv {
+    
+      display: inline-grid;
       height: inherit;
-      width: inherit;
+  }
+
+  #download{
+    height: fit-content;
   }
