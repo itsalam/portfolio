@@ -14,6 +14,7 @@
   }
   
 .title-text{
+    height:40px;
     padding-right: 5px;
     min-width: 10px;
     width: fit-content;
@@ -38,7 +39,6 @@ header .banner-text hr {
 hr { border: solid #fffefe; border-width: 2px 0 0; clear: both; margin: 11px 0 30px; height: 0; }
 
 .banner-text {
-  position: fixed;
   margin: 0 auto;
   z-index: 15;
   align-self: center;

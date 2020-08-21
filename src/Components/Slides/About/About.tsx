@@ -59,9 +59,10 @@ export const About = (props: {
       <div className="about-title">
         <div className="text">
           <h1> ABOUT </h1>
+          
+          <hr />
         </div>
 
-        <hr />
       </div>
 
       <div className="about-text">
@@ -87,16 +88,19 @@ export const About = (props: {
           things such as CGI graphics, computer builds, and cooking.
         </p>
       </div>
-      <h2>Things I like using:</h2>
       <div id="tools-section">
-        {props.data.tools.map((tool, index) => {
-          return (
-            <div className="logo" key={index}>
-              <img src={tool.path} alt="Trulli" />
-              <p>{tool.name.charAt(0).toUpperCase() + tool.name.slice(1)}</p>
-            </div>
-          );
-        })}
+        
+        <h2>Things I like using:</h2>
+        <ul id="tools">
+          {props.data.tools.map((tool, index) => {
+            return (
+              <li className="logo" key={index}>
+                <img src={tool.path} alt="Trulli" />
+                <p>{tool.name.charAt(0).toUpperCase() + tool.name.slice(1)}</p>
+              </li>
+            );
+          })}
+        </ul>
       </div>
     </div>
   );
