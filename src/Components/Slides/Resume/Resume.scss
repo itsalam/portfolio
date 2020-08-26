@@ -1,43 +1,120 @@
 #resume {
-  width: 96%;
-  height: 96%;
-  background: rgba(29, 29, 29, 0.568);
-  margin: auto;
-  overflow: clip;
   vertical-align: middle;
+  display: inline-grid;
+  overflow: auto;
+  grid-template-rows: 15% 78.5%;
 }
 
 #resumePdf {
-    width: 55%;
-    height: 75%;
+  height: inherit;
+  width: 102%;
 }
 
-.about-title {
-    margin: 3%;
-  }
+.text {
+  font-size: small;
+  overflow: hidden;
+  height: fit-content;
+}
+
+
+#pdfDiv {
+  width: inherit;
+  height: inherit;
+  background-color: transparent;
+  justify-content: center;
+  align-items: flex-end;
+  display: flex;
+}
+
+#download {
   
-  .about-title h1 {
-    overflow: hidden;
-  }
+  display: flex;
+  height: fit-content;
+  font-size: 0;
   
-  .text {
-    font-size: small;
-    overflow: hidden;
-    height: fit-content;
-  }
-  
-  #resume hr {
-    width: 10%;
+  i {
+    font: 0;
     margin: auto;
-    border-width: 5px 0 0;
+    width: auto;
+  }
+}
+
+.resume-slider {
+  background-color: transparent;
+}
+
+#resumeSlide>div{
+  height: 100%;
+  width: 100%;
+}
+
+#caption {
+  border-radius: 4px;
+  width: fit-content;
+
+  padding: 1% 4%;
+  margin: 1.25%;
+  position: fixed;
+  background-color: rgb(70, 70, 70);
+}
+
+#caption p {
+display: inline-flex;
+  align-items: center;
+  margin: 0;
+  color: #cacaca;
+}
+
+.awssld {
+  --slider-transition-duration: 638ms;
+  --organic-arrow-border-radius: 0px;
+  --organic-arrow-height: 25%;
+  --organic-arrow-color: #6db5b8;
+  --control-button-width: 2%;
+  --control-button-height: 25%;
+  --control-bullet-active-color: #11ABB0;
+  --control-bullet-color: #dbdbdb;
+  --loader-bar-color: #851515;
+  --loader-bar-height: 6px;
+  --content-background-color: transparent
+}
+
+#workDiv {    
+  width: inherit;
+  height: inherit;
+  justify-content: center;
+  display: flex;
+
+  #caption {
+    bottom: 10px;
+  }
+}
+
+
+// @keyframes textAnimate{
+//   0%{
+//     stroke-dasharray: 0 50%;
+//     stroke-dashoffset: 20%;
+//   }
+//   100%{
+//     stroke-dasharray: 50% 0;
+//     stroke-dashoffset: -20%;
+//   }
+// }
+
+
+@media only screen and (max-width: 768px) {
+  #resumePdf {
+    width: 640;
+    height: 480;
   }
 
-  #pdfDiv {
-    
-      display: inline-grid;
-      height: inherit;
+  #caption {
+    border-radius: 4px;
+    width: fit-content;
+    padding: 2.5% 3.5%;
+    margin: 3%;
+    position: fixed;
+    background-color: rgb(70, 70, 70);
   }
-
-  #download{
-    height: fit-content;
-  }
+}

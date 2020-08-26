@@ -6,7 +6,7 @@ import Contact from "./Components/Slides/Contact";
 import Slider from "./Components/Slider/Slider";
 import { MainSlider } from "Components/Slider/MainSlider";
 import { VideoBackground } from "Components/Background/VideoBackground";
-import { Resume } from "Components/Slides/Resume/Resume";
+import Resume from "Components/Slides/Resume/Resume";
 
 class App extends Component<{}, { slides: JSX.Element[] }> {
   async componentDidMount() {

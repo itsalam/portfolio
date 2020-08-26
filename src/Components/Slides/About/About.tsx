@@ -6,6 +6,7 @@ import anime from "animejs";
 import { SlideState } from "State/types";
 import { resetPlaySlide, registerSlide } from "State/actions";
 import { isWideScreen } from "Helpers/functions";
+import { playTitle } from "../Animations";
 
 export const About = (props: {
   name: String;
@@ -16,52 +17,25 @@ export const About = (props: {
   registerSlide?: Function;
 }) => {
 
+  const [titlePlayed, setTitlePlayed] = React.useState(false);
+
   React.useEffect(() => {
-    if (props.slideState?.playSlide === props.index) {
-      playAnimation(0);
+    if (props.slideState?.playSlide === props.index && !titlePlayed) {
+      playTitle("#aboutTitle", 0);
+      setTitlePlayed(true);
+      props.resetPlaySlide && props.resetPlaySlide();
     }
   });
 
-  const playAnimation = (delay: number) => {
-    console.log(props);
-    anime({
-      targets: ".about-title h1",
-      opacity: {
-        value: [0, 1],
-        duration: 150,
-      },
-      translateY: {
-        value: [150, 0],
-        duration: 1500,
-        easing: "easeOutCirc",
-        delay: 150,
-      },
-      delay,
-    });
-
-    anime({
-      targets: ".logo",
-      strokeDashoffset: [anime.setDashoffset, 0],
-      easing: "easeInOutSine",
-      duration: 1500,
-      delay: function (el, i) {
-        return i * 250;
-      },
-      direction: "alternate",
-      loop: true,
-    });
-
-    props.resetPlaySlide && props.resetPlaySlide();
-  };
-
   return (
     <div id="about">
-      <div className="about-title">
-        <div className="text">
-          <h1> ABOUT </h1>
-          
-          <hr />
-        </div>
+      <div className="titleDiv">
+        <svg id="aboutTitle" viewBox="0 0 150 100" className="svgTitle">
+          <text x="50%" y="60%" textAnchor="middle" fill="transparent"> ABOUT
+            </text>
+        </svg>
+
+        <hr />
 
       </div>
 
@@ -89,7 +63,7 @@ export const About = (props: {
         </p>
       </div>
       <div id="tools-section">
-        
+
         <h2>Things I like using:</h2>
         <ul id="tools">
           {props.data.tools.map((tool, index) => {

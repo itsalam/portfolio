@@ -4,7 +4,6 @@ import { combineReducers } from "redux";
 
 
 function slideReducer (state:SlideState = {activeSlide: 0, slides: new Map()}, action: SlideAction){
-    console.log(state, action);
     switch(action.type) {
         case ACTIONS.SWAP_SLIDE: {
             return {
