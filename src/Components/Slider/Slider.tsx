@@ -1,10 +1,11 @@
-import React, { Component, useEffect } from 'react';
+import React, { Component, useEffect, Fragment } from 'react';
 import anime from "animejs";
 import { Transition, TransitionGroup } from 'react-transition-group';
 import './Slider.css';
 import { registerSlide, playSlide } from "State/actions";
 import { connect } from 'react-redux';
 import { isWideScreen } from 'Helpers/functions';
+import Navbar from 'Components/NavBar/Navbar';
 
 const Slider = (props: { slides: JSX.Element[], playSlide: Function, registerSlide:Function, disabled?:Boolean}) => {
     const [slider, setSlider] = React.useState({
@@ -49,6 +50,7 @@ const Slider = (props: { slides: JSX.Element[], playSlide: Function, registerSli
 
     return (
         props.disabled? props.slides[0] :
+        <Fragment>
             <TransitionGroup className="slider">
                 {props.slides.map((slide, index) => {
                     props.registerSlide(slide.props.name, index);
@@ -74,6 +76,8 @@ const Slider = (props: { slides: JSX.Element[], playSlide: Function, registerSli
                     )
                 })}
             </TransitionGroup>
+            <Navbar/>
+        </Fragment>
     )
 }
 

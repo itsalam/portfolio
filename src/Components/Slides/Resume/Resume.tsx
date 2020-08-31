@@ -22,7 +22,6 @@ export const Resume = (props:{data: PortfolioData, name: String})=> {
                 </a>
             </div>
 
-            
             <div id= "works">
 
             </div>
