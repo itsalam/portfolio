@@ -32,7 +32,7 @@ const Resume = (props: {
 
   });
 
-  const handleMobileResumeClick = (event: React.MouseEvent<HTMLIFrameElement, MouseEvent>) => {
+            <div id= "works">
 
   }
 
