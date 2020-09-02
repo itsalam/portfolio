@@ -40,6 +40,7 @@ export const VideoBackground = () => {
   };
 
   useEffect(() => {
+    console.log("!!");
     const loadYoutubeAPI = async () => {
       const script = document.createElement("script");
       script.src = "https://www.youtube.com/iframe_api";

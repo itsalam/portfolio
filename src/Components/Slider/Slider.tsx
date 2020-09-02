@@ -1,29 +1,30 @@
 import React, { Component, useEffect, Fragment } from 'react';
 import anime from "animejs";
 import { Transition, TransitionGroup } from 'react-transition-group';
-import './Slider.css';
-import { registerSlide, playSlide } from "State/actions";
+import './Slider.scss';
+import { swapSlide, registerSlide, playSlide } from "State/actions";
 import { connect } from 'react-redux';
 import { isWideScreen } from 'Helpers/functions';
 import Navbar from 'Components/NavBar/Navbar';
+import { SlideState } from 'State/types';
 
-const Slider = (props: { slides: JSX.Element[], playSlide: Function, registerSlide:Function, disabled?:Boolean}) => {
+const Slider = (props: { slides: JSX.Element[], activeSlide: number, swapSlide: Function, playSlide: Function, registerSlide:Function, disabled?:Boolean}) => {
     const [slider, setSlider] = React.useState({
         currentSlide: 0,
         isMoving: false,
         slideLength: props.slides.length
     })
-
+    
     const nodeRef : React.RefObject<HTMLDivElement> = React.createRef();
 
-    const handleScroll = (event: React.WheelEvent) => {
-        var length = slider.slideLength;
-        var scrollingDown = event.deltaY > 0;
-        var direction = scrollingDown? 1: -1;
-        var oldSlide = slider.currentSlide;
-        var target =  oldSlide + direction;
-        if (target < 0 || target >= length || slider.isMoving) return;
-        
+    React.useEffect(()=>{
+        props.activeSlide !== slider.currentSlide && slideTo(props.activeSlide);
+    })
+
+    const slideTo = (target: number) => {
+        if (target < 0 || target >= slider.slideLength || slider.isMoving) return;
+        const direction = target > slider.currentSlide? 1 : -1;
+        props.swapSlide(target);
         setSlider({ ...slider, isMoving: true });
         setTimeout(()=> {
             anime({
@@ -45,7 +46,13 @@ const Slider = (props: { slides: JSX.Element[], playSlide: Function, registerSli
             }
             );
         }, 0);
+    }
 
+    const handleScroll = (event: React.WheelEvent) => {
+        event.preventDefault();
+        var direction = event.deltaY > 0 ? 1: -1;
+        var target =  slider.currentSlide + direction;
+        slideTo(target);
     }
 
     return (
@@ -81,4 +88,8 @@ const Slider = (props: { slides: JSX.Element[], playSlide: Function, registerSli
     )
 }
 
-export default connect((a,b)=>({...b}), {playSlide, registerSlide})(Slider);
+export default connect((state: { slideState: SlideState }, ownProps)=>(
+    {...ownProps, 
+    activeSlide: state.slideState.activeSlide
+    }), 
+    {swapSlide, playSlide, registerSlide})(Slider);

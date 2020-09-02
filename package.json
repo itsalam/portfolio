@@ -6,36 +6,26 @@
   },
   "private": true,
   "dependencies": {
-    "@reduxjs/toolkit": "^1.4.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
-    "@testing-library/user-event": "^7.2.1",
     "@types/animejs": "^3.1.1",
-    "@types/jest": "^24.9.1",
-    "@types/node": "^12.12.50",
     "@types/react": "^16.9.43",
     "@types/react-dom": "^16.9.8",
-    "@types/react-native": "^0.63.5",
+    "@types/react-loader-spinner": "^3.1.0",
     "@types/react-redux": "^7.1.9",
     "@types/react-transition-group": "^4.4.0",
     "@types/redux": "^3.6.0",
-    "@types/youtube": "0.0.39",
     "animejs": "^3.2.0",
     "is-mobile": "^2.2.2",
-    "node-sass": "^4.14.1",
-    "particles.js": "^2.0.0",
     "react": "^16.13.1",
     "react-awesome-slider": "^4.1.0",
     "react-dom": "^16.13.1",
-    "react-native": "^0.63.2",
+    "react-loader-spinner": "^3.1.14",
     "react-particles-js": "^3.2.1",
-    "react-player": "^2.5.0",
     "react-redux": "^7.2.1",
     "react-scripts": "^3.4.3",
     "react-transition-group": "^4.4.1",
-    "typed.js": "^2.0.11",
-    "typescript": "^3.9.6",
-    "videojs-youtube": "^2.6.1"
+    "typescript": "^3.9.6"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -58,10 +48,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "@types/jquery": "^3.5.0",
-    "@types/video.js": "^7.3.10",
-    "video.js": "^7.8.4"
   }
 }

@@ -39,6 +39,7 @@ h1 {
     height:100%;
     
    text {
+      font: 2vmax 'opensans-light', sans-serif;
       font-weight: 50;
       stroke: #dbdbdb;
       stroke-width: 2;
@@ -58,8 +59,4 @@ h1 {
         font-size: 11vw;
     }
     }
-
-    .titleDiv hr {
-        top: 12vh;
-      }
   }

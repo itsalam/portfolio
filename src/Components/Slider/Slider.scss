@@ -1,3 +1,7 @@
+sliderDiv{
+    display: inline;
+}
+
 .slider {
     z-index: 100;
     width: 100%;
@@ -22,6 +26,7 @@
 }
 
 #background {
+    padding-top: 10px;
     border-radius: 5px;
     display: inline-grid;
     width: 96%;

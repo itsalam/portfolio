@@ -8,7 +8,6 @@ export const playTitle = (titleId: string, delay: number = 0) => {
            {value: ['0% 100%' ,'100% 0%'],
           duration: 1000},
         ],
-      delay: function(el, i) { console.log(el, i); return i * 250 },
       easing: "easeOutCirc",
     });
     anime({
@@ -18,7 +17,6 @@ export const playTitle = (titleId: string, delay: number = 0) => {
            {value: ['0%' ,'22%'],
           duration: 1000},
         ],
-      delay: function(el, i) { console.log(el, i); return i * 250 },
       easing: "easeOutCirc",
     });
 }

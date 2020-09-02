@@ -20,6 +20,7 @@ export const HomePage = (props: HomePageProps) => {
 
   var networks = props.data.social
     ? props.data.social.map(function (network) {
+        console.log(network)
         return (
           <li key={network.name}>
             <a href={network.url}>
@@ -52,6 +53,13 @@ export const HomePage = (props: HomePageProps) => {
         duration: 1500,
         easing: "easeOutCirc",
         begin: ()=> {props.playSlide(0)}
+      })
+      anime({
+        targets: ["#navBar"],
+        translateX: ["5vw", "0"],        
+        opacity: [0, 1],
+        duration: 1500,
+        easing: "easeOutCirc",
       });
     }
   };

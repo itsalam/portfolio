@@ -6,7 +6,7 @@ export enum ACTIONS {
 }
 
 export interface SlideState {
-    activeSlide?: number;
+    activeSlide: number;
     playSlide?: number;
     slides: Map<string, number>;
 }

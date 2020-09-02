@@ -8,7 +8,6 @@ import { SlideState } from "State/types";
 import { playTitle } from "../Animations";
 import { connect } from "react-redux";
 import { resetPlaySlide, registerSlide } from "State/actions";
-import anime from "animejs";
 
 var mobile = require("is-mobile");
 
@@ -18,7 +17,6 @@ const Resume = (props: {
   index?: number;
   slideState?: SlideState;
   resetPlaySlide?: Function;
-  playSlide?: Function;
 }) => {
 
   const [titlePlayed, setTitlePlayed] = React.useState(false);
@@ -29,10 +27,9 @@ const Resume = (props: {
       setTitlePlayed(true);
       props.resetPlaySlide && props.resetPlaySlide();
     }
-
   });
 
-            <div id= "works">
+  const handleMobileResumeClick = () => {
 
   }
 

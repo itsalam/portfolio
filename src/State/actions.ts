@@ -3,7 +3,7 @@ import { ACTIONS } from "./types";
 export const swapSlide = (slideNumber: number) => {
   return {
     type: ACTIONS.SWAP_SLIDE,
-    currentSlide: slideNumber,
+    activeSlide: slideNumber,
   };
 };
 
