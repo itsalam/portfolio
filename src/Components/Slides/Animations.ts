@@ -14,7 +14,7 @@ export const playTitle = (titleId: string, delay: number = 0) => {
       targets: `.titleDiv hr`,
       opacity: [0, 1],
         width: [
-           {value: ['0%' ,'22%'],
+           {value: ['0%' ,'15%'],
           duration: 1000},
         ],
       easing: "easeOutCirc",

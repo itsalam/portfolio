@@ -27,7 +27,6 @@
 
     /* header styles
    ------------------------------------------------------------------ */
-   header .banner { padding-bottom: 12px; }
    header .banner-text h1 {
       font: 40px/1.1em 'Anonymous Pro', sans-serif;
       letter-spacing: -1px;      
@@ -187,10 +186,6 @@
 
    /* Header Styles
    -------------------------------------------------------------------- */
-   header .banner {
-      padding-bottom: 12px;
-      padding-top: 6px;
-   }
    header .banner-text h1 { font: 40px/1.1em 'Anonymous Pro', sans-serif; }
    header .banner-text h3 {
       font: 16px/1.9em 'Anonymous Pro', monospace;
@@ -348,7 +343,6 @@
 
    /* header styles
    -------------------------------------------------------------------- */
-   header .banner { padding-top: 24px; }
    header .banner-text h1 {
       font-size: 3vw;
       font: 30px/1.4em 'Anonymous Pro', sans-serif;      
@@ -381,7 +375,7 @@
 
    /* header styles
    -------------------------------------------------------------------- */
-   header .banner { padding-top: 24px; }
+
    header .banner-text h1 {
       font-size: 3vw;
       font: 20px/1.4em 'Anonymous Pro', sans-serif;      

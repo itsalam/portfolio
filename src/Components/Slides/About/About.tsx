@@ -34,7 +34,6 @@ export const About = (props: {
           <text x="50%" y="60%" textAnchor="middle" fill="transparent"> ABOUT
             </text>
         </svg>
-
         <hr />
 
       </div>
