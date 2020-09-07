@@ -1,5 +1,12 @@
 import { ACTIONS } from "./types";
 
+export const urlToSlide = (slideName: string) => {
+  return {
+    type: ACTIONS.URL_TO_SLIDE,
+    slideName,
+  }
+}
+
 export const swapSlide = (slideNumber: number) => {
   return {
     type: ACTIONS.SWAP_SLIDE,

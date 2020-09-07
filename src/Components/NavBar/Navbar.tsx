@@ -6,18 +6,18 @@ import "./Navbar.scss"
 import { slideIcon } from "Helpers/functions";
 
 const NavBar = (props: { slides: Map<string, number>, activeSlide: number, swapSlide: Function }) => {
-    console.log(props);
+
     return (
         <div id="navBar">
             <ul>
                 {
-                    Array.from(props.slides.entries(), ([key, value]) => {
+                    Array.from(props.slides.entries(), ([name, index]) => {
                         return (
-                        <li key={key} className={"navEntry " + ( props.activeSlide === value? "current" : "" )} onClick={() => props.swapSlide(value)}>
+                        <li key={name} className={"navEntry " + ( props.activeSlide === index? "current" : "" )} onClick={() => props.swapSlide(index)}>
                             <div className="navContent" >
-                                <i className="material-icons">{slideIcon(key.toLowerCase())}</i>
+                                <i className="material-icons">{slideIcon(name.toLowerCase())}</i>
                                 <div>
-                                    <p>{key.toUpperCase()}</p>
+                                    <p>{name.toUpperCase()}</p>
                                 </div>
                             </div>
                         </li> )

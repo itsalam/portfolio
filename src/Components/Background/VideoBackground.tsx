@@ -40,7 +40,6 @@ export const VideoBackground = () => {
   };
 
   useEffect(() => {
-    console.log("!!");
     const loadYoutubeAPI = async () => {
       const script = document.createElement("script");
       script.src = "https://www.youtube.com/iframe_api";
@@ -81,17 +80,14 @@ export const VideoBackground = () => {
             e.target.mute();
             e.target.setPlaybackQuality("hd1080");
             e.target.playVideo();
-            setTimeout(
-              () =>
-                anime({
-                  duration: 2000,
+            anime({
+              duration: 2000,
 
-                  easing: "easeInQuad",
-                  targets: document.getElementById("_buffering-background"),
-                  opacity: [1, 0],
-                }),
-              1000
-            );
+              easing: "easeInQuad",
+              targets: document.getElementById("_buffering-background"),
+              opacity: [1, 0],
+              delay: 1000,
+            })
             fadeInOut();
           },
           onStateChange: function (e) {

@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import { PortfolioData } from "../../Models/portfolioData";
 import "./HomePage.scss";
 import anime from "animejs";
@@ -6,11 +6,14 @@ import { Title } from "./Title";
 import { playSlide } from "State/actions";
 import { connect } from "react-redux";
 import { isWideScreen } from "Helpers/functions";
+import { SlideState } from "State/types";
 
 interface HomePageProps {
   name: String;
   data: PortfolioData;
   playSlide: Function;
+  activeSlide: number;
+  originSlide?: number;
   slider?: JSX.Element;
 }
 
@@ -18,9 +21,17 @@ export const HomePage = (props: HomePageProps) => {
   const [sliderHidden, setSliderHidden] = React.useState(true);
   const [titleAnimationComplete, setTitleAnimationComplete] = React.useState(false);
 
+  React.useEffect(() => {
+    if(props.originSlide) {
+      
+    console.log(props.originSlide);
+      showSlider();
+    }
+
+  })
+
   var networks = props.data.social
     ? props.data.social.map(function (network) {
-        console.log(network)
         return (
           <li key={network.name}>
             <a href={network.url}>
@@ -52,7 +63,7 @@ export const HomePage = (props: HomePageProps) => {
         opacity: [0, 1],
         duration: 1500,
         easing: "easeOutCirc",
-        begin: ()=> {props.playSlide(0)}
+        begin: ()=> {props.playSlide(props.activeSlide)}
       })
       anime({
         targets: ["#navBar"],
@@ -94,4 +105,8 @@ export const HomePage = (props: HomePageProps) => {
   );
 };
 
-export default connect(null, { playSlide })(HomePage);
+export default connect(   (state: { slideState: SlideState }, ownProps) => ({
+  activeSlide: state.slideState.activeSlide,
+  originSlide: state.slideState.originSlide,
+  ...ownProps,
+}), { playSlide })(HomePage);

@@ -8,7 +8,7 @@ import { isWideScreen } from 'Helpers/functions';
 import Navbar from 'Components/NavBar/Navbar';
 import { SlideState } from 'State/types';
 
-const Slider = (props: { slides: JSX.Element[], activeSlide: number, swapSlide: Function, playSlide: Function, registerSlide:Function, disabled?:Boolean}) => {
+const Slider = (props: { slides: JSX.Element[], originSlide?: number, activeSlide: number, swapSlide: Function, playSlide: Function, registerSlide:Function, disabled?:Boolean}) => {
     const [slider, setSlider] = React.useState({
         currentSlide: 0,
         isMoving: false,
@@ -18,8 +18,13 @@ const Slider = (props: { slides: JSX.Element[], activeSlide: number, swapSlide: 
     const nodeRef : React.RefObject<HTMLDivElement> = React.createRef();
 
     React.useEffect(()=>{
-        props.activeSlide !== slider.currentSlide && slideTo(props.activeSlide);
-    })
+        props.originSlide ? slideTo(props.originSlide) : props.activeSlide !== slider.currentSlide && slideTo(props.activeSlide);
+        if(!props.disabled){
+            props.slides.forEach((slide, index) => {
+                props.registerSlide(slide.props.name, index);
+            })
+        }
+    }, [props])
 
     const slideTo = (target: number) => {
         if (target < 0 || target >= slider.slideLength || slider.isMoving) return;
@@ -60,7 +65,6 @@ const Slider = (props: { slides: JSX.Element[], activeSlide: number, swapSlide: 
         <Fragment>
             <TransitionGroup className="slider">
                 {props.slides.map((slide, index) => {
-                    props.registerSlide(slide.props.name, index);
                     return (
                         <Transition
                         timeout={2000}
@@ -90,6 +94,7 @@ const Slider = (props: { slides: JSX.Element[], activeSlide: number, swapSlide: 
 
 export default connect((state: { slideState: SlideState }, ownProps)=>(
     {...ownProps, 
-    activeSlide: state.slideState.activeSlide
+    activeSlide: state.slideState.activeSlide,
+    originSlide: state.slideState.originSlide
     }), 
     {swapSlide, playSlide, registerSlide})(Slider);
