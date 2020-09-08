@@ -1,7 +1,3 @@
-export const isWideScreen = () => {
-    return window.innerWidth > 960;
-}
-
 export const slideIcon = (name: string) => {
     switch(name.toLowerCase()) {
         case "about":

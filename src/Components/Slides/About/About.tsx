@@ -5,7 +5,6 @@ import "./About.scss";
 import anime from "animejs";
 import { SlideState } from "State/types";
 import { resetPlaySlide} from "State/actions";
-import { isWideScreen } from "Helpers/functions";
 import { playTitle } from "../Animations";
 
 export const About = (props: {

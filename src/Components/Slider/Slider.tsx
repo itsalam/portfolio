@@ -4,9 +4,9 @@ import { Transition, TransitionGroup } from 'react-transition-group';
 import './Slider.scss';
 import { swapSlide, registerSlide, playSlide } from "State/actions";
 import { connect } from 'react-redux';
-import { isWideScreen } from 'Helpers/functions';
 import Navbar from 'Components/NavBar/Navbar';
 import { SlideState } from 'State/types';
+import isMobile from "is-mobile";
 
 const Slider = (props: { slides: JSX.Element[], originSlide?: number, activeSlide: number, swapSlide: Function, playSlide: Function, registerSlide:Function, disabled?:Boolean}) => {
     const [slider, setSlider] = React.useState({
@@ -23,6 +23,7 @@ const Slider = (props: { slides: JSX.Element[], originSlide?: number, activeSlid
             props.slides.forEach((slide, index) => {
                 props.registerSlide(slide.props.name, index);
             })
+            //TODO: add event listener
         }
     }, [props])
 
@@ -79,7 +80,7 @@ const Slider = (props: { slides: JSX.Element[], originSlide?: number, activeSlid
                                 key= {`slide-${index}-page`}
                                 ref={nodeRef}
                             >
-                                <div className={(!isWideScreen() && index === 0) ? "main":""} id="background">
+                                <div className={(isMobile() && index === 0) ? "main":""} id="background">
                                 {React.cloneElement(slide, {...slide.props, index})}
                                 </div>
                             </div>

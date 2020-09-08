@@ -6,12 +6,12 @@ import HomePage from "./Components/HomePage/";
 import About from "./Components/Slides/About/About";
 import Contact from "./Components/Slides/Contact/Contact";
 import Slider from "./Components/Slider/Slider";
-import { MainSlider } from "Components/Slider/MainSlider";
 import { VideoBackground } from "Components/Background/VideoBackground";
 import Resume from "Components/Slides/Resume/Resume";
 import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
 import { urlToSlide } from "State/actions";
+import { isMobile } from "is-mobile";
 
 const App = (props: {urlToSlide: Function}, match: {slide: string}) => {
   
@@ -50,8 +50,7 @@ const App = (props: {urlToSlide: Function}, match: {slide: string}) => {
     return slides ? (
       <div className="App">
         <VideoBackground />
-
-        <MainSlider slides={slides}></MainSlider>
+        <Slider slides={slides} disabled={!isMobile()}/>
       </div>
     ) : (
       <div id="loader">      
