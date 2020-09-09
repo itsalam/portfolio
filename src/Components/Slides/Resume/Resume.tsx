@@ -57,19 +57,7 @@ const Resume = (props: {
                 <embed id="resumePdf" src="https://drive.google.com/file/d/1tgh9ymwnGOIz2_FtGaaHbu6RNw5Yq33J/preview" />
               )}
 
-            <div id="caption">
-              <p>
-                {" "}
-                My resume as of July 15th, 2020
-                <a
-                  id="download"
-                  href="./Vincent Lam CMPT.pdf"
-                  download="Vincent Lam CMPT.pdf"
-                >
-                  <i className="material-icons">get_app</i>
-                </a>
-              </p>
-            </div>
+            
           </div>
         </div>
         <div><div id="workDiv">

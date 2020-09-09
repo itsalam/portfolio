@@ -3,18 +3,21 @@ export enum ACTIONS {
   PLAY_SLIDE = "PLAY_SLIDE",
   REGISTER_SLIDES = "REGISTER_SLIDES",
   REGISTER_SLIDE = "REGISTER_SLIDE",
-  URL_TO_SLIDE = "URL_TO_SLIDE"
+  URL_TO_SLIDE = "URL_TO_SLIDE",
+  SCROLL_SLIDE = "SCROLL_SLIDE"
 }
 
 export interface SlideState {
+    slides: Map<string, number>;
     activeSlide: number;
+    oldSlide?: number;
     originSlide?: number;
     playSlide?: number;
-    slides: Map<string, number>;
 }
 
 export interface SlideAction extends SlideState{
     type: ACTIONS
     key: number,
-    slideName: string
+    slideName: string,
+    direction?: number;
 }

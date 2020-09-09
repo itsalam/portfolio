@@ -2,40 +2,29 @@ import React, { Component, useEffect, Fragment } from 'react';
 import anime from "animejs";
 import { Transition, TransitionGroup } from 'react-transition-group';
 import './Slider.scss';
-import { swapSlide, registerSlide, playSlide } from "State/actions";
+import { swapSlide, registerSlide } from "State/actions";
 import { connect } from 'react-redux';
 import Navbar from 'Components/NavBar/Navbar';
 import { SlideState } from 'State/types';
 import isMobile from "is-mobile";
 
-const Slider = (props: { slides: JSX.Element[], originSlide?: number, activeSlide: number, swapSlide: Function, playSlide: Function, registerSlide:Function, disabled?:Boolean}) => {
+const Slider = (props: { slides: JSX.Element[], originSlide?: number, oldSlide?: number, activeSlide: number, registerSlide:Function}) => {
     const [slider, setSlider] = React.useState({
-        currentSlide: 0,
         isMoving: false,
         slideLength: props.slides.length
     })
-    
+
     const nodeRef : React.RefObject<HTMLDivElement> = React.createRef();
 
-    React.useEffect(()=>{
-        props.originSlide ? slideTo(props.originSlide) : props.activeSlide !== slider.currentSlide && slideTo(props.activeSlide);
-        if(!props.disabled){
-            props.slides.forEach((slide, index) => {
-                props.registerSlide(slide.props.name, index);
-            })
-            //TODO: add event listener
-        }
-    }, [props])
-
-    const slideTo = (target: number) => {
-        if (target < 0 || target >= slider.slideLength || slider.isMoving) return;
-        const direction = target > slider.currentSlide? 1 : -1;
-        props.swapSlide(target);
+    const slideTo =  (target: number) => {
+        if (slider.isMoving) return;
+        console.log(target);
         setSlider({ ...slider, isMoving: true });
+        const direction = props.oldSlide? (props.oldSlide < target ? 1 : -1) : 1;
         setTimeout(()=> {
             anime({
                 duration: 400,
-                targets: document.querySelectorAll(`.active`,),
+                targets: document.querySelectorAll(`.slide-${props.oldSlide}`),
                 translateY: [0, -100 * direction + "%"],
                 easing: "easeInOutQuart",
             }
@@ -47,22 +36,25 @@ const Slider = (props: { slides: JSX.Element[], originSlide?: number, activeSlid
                 translateY: [100 * direction + "%", 0],
                 easing: "easeInOutQuart",
                 complete: () => { 
-                    setSlider({ ...slider, isMoving: false, currentSlide: target}); 
-                    props.playSlide(target);}
+                    setSlider({ ...slider, isMoving: false}); 
             }
-            );
-        }, 0);
+        });
+        }, 50);
     }
 
-    const handleScroll = (event: React.WheelEvent) => {
-        event.preventDefault();
-        var direction = event.deltaY > 0 ? 1: -1;
-        var target =  slider.currentSlide + direction;
-        slideTo(target);
-    }
+    useEffect(()=>{
+        if (props.originSlide) slideTo(props.originSlide);
+        props.slides.forEach((slide, index) => {
+            props.registerSlide(slide.props.name, index);
+        })
+            
+    }, [props.originSlide, props.slides])
+
+    useEffect(()=> {
+        slideTo(props.activeSlide);
+    }, [props.activeSlide]);
 
     return (
-        props.disabled? props.slides[0] :
         <Fragment>
             <TransitionGroup className="slider">
                 {props.slides.map((slide, index) => {
@@ -75,8 +67,8 @@ const Slider = (props: { slides: JSX.Element[], originSlide?: number, activeSlid
                         key= {`slide-${index}`}
                         nodeRef={nodeRef}
                         > 
-                            <div onWheel={e => handleScroll(e)}
-                                className={slider.currentSlide === index?  `slide active` : `slide-${index} slide`}
+                            <div
+                                className={`slide-${index} slide ` + (props.activeSlide === index?  `` : "")}
                                 key= {`slide-${index}-page`}
                                 ref={nodeRef}
                             >
@@ -95,7 +87,8 @@ const Slider = (props: { slides: JSX.Element[], originSlide?: number, activeSlid
 
 export default connect((state: { slideState: SlideState }, ownProps)=>(
     {...ownProps, 
+    oldSlide: state.slideState.oldSlide,
     activeSlide: state.slideState.activeSlide,
     originSlide: state.slideState.originSlide
     }), 
-    {swapSlide, playSlide, registerSlide})(Slider);
+    {swapSlide, registerSlide})(Slider);

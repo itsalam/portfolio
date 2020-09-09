@@ -7,6 +7,13 @@ export const urlToSlide = (slideName: string) => {
   }
 }
 
+export const scrollSlide = (direction: number) => {
+  return {
+    type: ACTIONS.SCROLL_SLIDE,
+    direction
+  }
+}
+
 export const swapSlide = (slideNumber: number) => {
   return {
     type: ACTIONS.SWAP_SLIDE,

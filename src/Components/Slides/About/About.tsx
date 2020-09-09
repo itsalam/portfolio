@@ -12,7 +12,6 @@ export const About = (props: {
   data: PortfolioData;
   slideState?: SlideState;
   index?: number;
-  resetPlaySlide?: Function;
 }) => {
 
   const [titlePlayed, setTitlePlayed] = React.useState(false);
@@ -21,7 +20,6 @@ export const About = (props: {
     if (props.slideState?.playSlide === props.index && !titlePlayed) {
       playTitle("#aboutTitle", 0);
       setTitlePlayed(true);
-      props.resetPlaySlide && props.resetPlaySlide();
     }
   });
 
