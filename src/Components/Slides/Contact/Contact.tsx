@@ -42,7 +42,7 @@ const Contact = (props: {
             <hr />
 
          </div>
-         <div className="row">
+         <div className="contactContent">
             <div className="eight columns">
                <form action="" method="post" id="contactForm" name="contactForm">
                   <fieldset>
