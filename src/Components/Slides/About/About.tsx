@@ -4,8 +4,7 @@ import { PortfolioData } from "Models/portfolioData";
 import "./About.scss";
 import anime from "animejs";
 import { SlideState } from "State/types";
-import { resetPlaySlide, registerSlide } from "State/actions";
-import { isWideScreen } from "Helpers/functions";
+import { resetPlaySlide} from "State/actions";
 import { playTitle } from "../Animations";
 
 export const About = (props: {
@@ -14,7 +13,6 @@ export const About = (props: {
   slideState?: SlideState;
   index?: number;
   resetPlaySlide?: Function;
-  registerSlide?: Function;
 }) => {
 
   const [titlePlayed, setTitlePlayed] = React.useState(false);
@@ -86,5 +84,5 @@ export default connect(
     slideState: state.slideState,
     ...ownProps,
   }),
-  { resetPlaySlide, registerSlide }
+  { resetPlaySlide }
 )(About);

@@ -20,9 +20,18 @@ function slideReducer (state:SlideState = {activeSlide: 0, slides: new Map()}, a
             }
         }
         case ACTIONS.REGISTER_SLIDE: {
-            state.slides.set(action.slideName, action.key);
+            const slides = new Map(state.slides);
+            slides.set(action.slideName, action.key);
             return {
-                ...state
+                ...state,
+                slides
+            }
+        }
+        case ACTIONS.URL_TO_SLIDE: {
+            let originSlide = state.slides.get(action.slideName);
+            return {
+                ...state,
+                originSlide,
             }
         }
         default:

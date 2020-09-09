@@ -6,16 +6,24 @@ import HomePage from "./Components/HomePage/";
 import About from "./Components/Slides/About/About";
 import Contact from "./Components/Slides/Contact/Contact";
 import Slider from "./Components/Slider/Slider";
-import { MainSlider } from "Components/Slider/MainSlider";
 import { VideoBackground } from "Components/Background/VideoBackground";
 import Resume from "Components/Slides/Resume/Resume";
+import { useParams } from "react-router-dom";
+import { connect } from "react-redux";
+import { urlToSlide } from "State/actions";
+import { isMobile } from "is-mobile";
 
-class App extends Component<{}, { slides: JSX.Element[] }> {
-  async componentDidMount() {
-    await this.getResumeData();
-  }
+const App = (props: {urlToSlide: Function}, match: {slide: string}) => {
+  
+  const [slides, setSlides] = React.useState<JSX.Element[]>();
 
-  async getResumeData() {
+  React.useEffect(()=> {
+    console.log(match.slide)
+    getResumeData();
+    match.slide && props.urlToSlide(match.slide);
+  },[props])
+
+  const getResumeData = async () =>  {
     await fetch("/resumeData.json")
       .then((response) => {
         if (!response.ok) {
@@ -29,23 +37,20 @@ class App extends Component<{}, { slides: JSX.Element[] }> {
         const contactPage = <Contact data={value} name="Contact"/>;
         const resumePage = <Resume data={value} name="Resume"/>
         const subSlider = <Slider slides={[aboutPage, resumePage, contactPage]} />;
-        this.setState({
-          slides: [
+        setSlides([
             <HomePage name="Home" data={value} slider={subSlider} />,
             aboutPage,
             resumePage,
             contactPage,
           ],
-        });
+        );
       });
   }
-
-  render() {
-    return this.state ? (
+    console.log(props);
+    return slides ? (
       <div className="App">
         <VideoBackground />
-
-        <MainSlider slides={this.state.slides}></MainSlider>
+        <Slider slides={slides} disabled={!isMobile()}/>
       </div>
     ) : (
       <div id="loader">      
@@ -58,7 +63,6 @@ class App extends Component<{}, { slides: JSX.Element[] }> {
 
    /></div>
     );
-  }
 }
 
-export default App;
+export default connect((a ,b) => ({b}), { urlToSlide })(App);

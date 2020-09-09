@@ -4,11 +4,11 @@ import { Transition, TransitionGroup } from 'react-transition-group';
 import './Slider.scss';
 import { swapSlide, registerSlide, playSlide } from "State/actions";
 import { connect } from 'react-redux';
-import { isWideScreen } from 'Helpers/functions';
 import Navbar from 'Components/NavBar/Navbar';
 import { SlideState } from 'State/types';
+import isMobile from "is-mobile";
 
-const Slider = (props: { slides: JSX.Element[], activeSlide: number, swapSlide: Function, playSlide: Function, registerSlide:Function, disabled?:Boolean}) => {
+const Slider = (props: { slides: JSX.Element[], originSlide?: number, activeSlide: number, swapSlide: Function, playSlide: Function, registerSlide:Function, disabled?:Boolean}) => {
     const [slider, setSlider] = React.useState({
         currentSlide: 0,
         isMoving: false,
@@ -18,8 +18,14 @@ const Slider = (props: { slides: JSX.Element[], activeSlide: number, swapSlide: 
     const nodeRef : React.RefObject<HTMLDivElement> = React.createRef();
 
     React.useEffect(()=>{
-        props.activeSlide !== slider.currentSlide && slideTo(props.activeSlide);
-    })
+        props.originSlide ? slideTo(props.originSlide) : props.activeSlide !== slider.currentSlide && slideTo(props.activeSlide);
+        if(!props.disabled){
+            props.slides.forEach((slide, index) => {
+                props.registerSlide(slide.props.name, index);
+            })
+            //TODO: add event listener
+        }
+    }, [props])
 
     const slideTo = (target: number) => {
         if (target < 0 || target >= slider.slideLength || slider.isMoving) return;
@@ -60,7 +66,6 @@ const Slider = (props: { slides: JSX.Element[], activeSlide: number, swapSlide: 
         <Fragment>
             <TransitionGroup className="slider">
                 {props.slides.map((slide, index) => {
-                    props.registerSlide(slide.props.name, index);
                     return (
                         <Transition
                         timeout={2000}
@@ -75,7 +80,7 @@ const Slider = (props: { slides: JSX.Element[], activeSlide: number, swapSlide: 
                                 key= {`slide-${index}-page`}
                                 ref={nodeRef}
                             >
-                                <div className={(!isWideScreen() && index === 0) ? "main":""} id="background">
+                                <div className={(isMobile() && index === 0) ? "main":""} id="background">
                                 {React.cloneElement(slide, {...slide.props, index})}
                                 </div>
                             </div>
@@ -90,6 +95,7 @@ const Slider = (props: { slides: JSX.Element[], activeSlide: number, swapSlide: 
 
 export default connect((state: { slideState: SlideState }, ownProps)=>(
     {...ownProps, 
-    activeSlide: state.slideState.activeSlide
+    activeSlide: state.slideState.activeSlide,
+    originSlide: state.slideState.originSlide
     }), 
     {swapSlide, playSlide, registerSlide})(Slider);

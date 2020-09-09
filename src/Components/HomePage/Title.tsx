@@ -2,16 +2,20 @@ import React, { useEffect } from 'react';
 import "./Title.scss";
 import anime from 'animejs';
 
-export const Title = (props: { titleStr: string, networks: JSX.Element[] | null, onTitleComplete: Function }) => {
+export const Title = (props: { titleStr: string, networks: JSX.Element[] | null, skipTitle: boolean }) => {
     const [currentTitle, setCurrentTitle] = React.useState("");
     const [animationComplete, setAnimationComplete] = React.useState(false);
     const ref = React.createRef<HTMLDivElement>();
 
     useEffect(() => {
         const cursorSpeed = currentTitle? anime.random(80, 100) : 1000;
-        setTimeout(() => {
-            setCurrentTitle(currentTitle + props.titleStr.charAt(currentTitle.length));
-        }, cursorSpeed);
+        if (props.skipTitle){
+            setCurrentTitle(props.titleStr);
+        } else {
+            setTimeout(() => {
+                setCurrentTitle(currentTitle + props.titleStr.charAt(currentTitle.length));
+            }, cursorSpeed);
+        }
         if (currentTitle.length === props.titleStr.length && !animationComplete) {
             setAnimationComplete(true)
             anime.timeline({
@@ -59,7 +63,7 @@ export const Title = (props: { titleStr: string, networks: JSX.Element[] | null,
             }, 250)
 
             anime({                
-                targets: ".smoothscroll",
+                targets: ".scrollicon",
                 opacity: {
                     value: [0, 1],
                     duration: 1000,
@@ -70,11 +74,10 @@ export const Title = (props: { titleStr: string, networks: JSX.Element[] | null,
                     easing: "easeOutQuint",
                     duration: 1000,
                     delay: 500
-                },
-                loopComplete: () => {console.log("done"); props.onTitleComplete();}
+                }
             })
         }
-    }, [animationComplete, currentTitle, props])
+    }, [, currentTitle, props])
 
     return (
         <div className="row banner banner-text">

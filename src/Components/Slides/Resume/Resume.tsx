@@ -37,7 +37,7 @@ const Resume = (props: {
     <div id="resume">
       <div className="titleDiv">
         <svg id="resumeTitle" viewBox="0 0 150 100" className="svgTitle">
-          <text x="50%" y="60%" textAnchor="middle" fill="transparent"> RESUME/WORK
+          <text x="50%" y="60%" textAnchor="middle" fill="transparent"> RESUME & WORK
           </text>
         </svg>
         <hr />

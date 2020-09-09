@@ -1,26 +1,37 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import { PortfolioData } from "../../Models/portfolioData";
 import "./HomePage.scss";
 import anime from "animejs";
 import { Title } from "./Title";
 import { playSlide } from "State/actions";
 import { connect } from "react-redux";
-import { isWideScreen } from "Helpers/functions";
+import { SlideState } from "State/types";
+import isMobile from "is-mobile";
 
 interface HomePageProps {
   name: String;
   data: PortfolioData;
   playSlide: Function;
+  activeSlide: number;
+  originSlide?: number;
   slider?: JSX.Element;
 }
 
 export const HomePage = (props: HomePageProps) => {
   const [sliderHidden, setSliderHidden] = React.useState(true);
-  const [titleAnimationComplete, setTitleAnimationComplete] = React.useState(false);
+  const [skipTitle, setSkipTitle] = React.useState(false);
+
+  React.useEffect(() => {
+    if(props.originSlide) {
+      
+    console.log(props.originSlide);
+      showSlider();
+    }
+
+  })
 
   var networks = props.data.social
     ? props.data.social.map(function (network) {
-        console.log(network)
         return (
           <li key={network.name}>
             <a href={network.url}>
@@ -32,7 +43,8 @@ export const HomePage = (props: HomePageProps) => {
     : null;
 
   const showSlider = () => {
-    if (isWideScreen() && sliderHidden && titleAnimationComplete) {
+    if (!isMobile() && sliderHidden) {
+      setSkipTitle(true);
       setSliderHidden(false);
       anime({
         targets: [".banner"],
@@ -52,7 +64,7 @@ export const HomePage = (props: HomePageProps) => {
         opacity: [0, 1],
         duration: 1500,
         easing: "easeOutCirc",
-        begin: ()=> {props.playSlide(0)}
+        begin: ()=> {props.playSlide(props.activeSlide)}
       })
       anime({
         targets: ["#navBar"],
@@ -65,27 +77,25 @@ export const HomePage = (props: HomePageProps) => {
   };
 
   return (
-    <header id="home" onWheel={isWideScreen() ? showSlider : undefined}>
+    <header id="home" onWheel={!isMobile() ? showSlider : undefined}>
       <Title
         titleStr={`Hi, I'm ${props.data.name}.`}
         networks={networks}
-        onTitleComplete={() => {
-          setTitleAnimationComplete(true);
-        }}
+        skipTitle={skipTitle}
       ></Title>
 
-      {isWideScreen() ? (
+      {!isMobile() ? (
         <Fragment>
           {props.slider}
           <p className="scrolldown">
-            <a className="smoothscroll" onClick={showSlider} href="#about">
+            <a className="scrollicon" onClick={showSlider} href="#about">
               <i className="icon-down-circle"></i>
             </a>
           </p>
         </Fragment>
       ) : (
         <p className="scrolldown">
-          <a className="smoothscroll"  href="#about">
+          <a className="scrollicon"  href="#about">
             <i className="icon-down-circle"></i>
           </a>
         </p>
@@ -94,4 +104,8 @@ export const HomePage = (props: HomePageProps) => {
   );
 };
 
-export default connect(null, { playSlide })(HomePage);
+export default connect(   (state: { slideState: SlideState }, ownProps) => ({
+  activeSlide: state.slideState.activeSlide,
+  originSlide: state.slideState.originSlide,
+  ...ownProps,
+}), { playSlide })(HomePage);
