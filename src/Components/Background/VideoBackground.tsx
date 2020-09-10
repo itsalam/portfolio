@@ -2,8 +2,7 @@ import React, { useEffect } from "react";
 import { CSSTransition } from "react-transition-group";
 import anime from "animejs";
 import "./VideoBackground.scss";
-
-
+import isMobile from "is-mobile";
 import Particles from 'react-particles-js';
 
 var particleData = require("particles.json");
@@ -11,7 +10,6 @@ var particleData = require("particles.json");
 export const VideoBackground = () => {
   var [height, setHeight] = React.useState<number>();
   var [width, setWidth] = React.useState<number>();
-  var [scriptLoaded, setScriptLoaded] = React.useState(false);
 
   const update = () => {
     setHeight(window.innerHeight);
@@ -40,15 +38,7 @@ export const VideoBackground = () => {
   };
 
   useEffect(() => {
-    const loadYoutubeAPI = async () => {
-      const script = document.createElement("script");
-      script.src = "https://www.youtube.com/iframe_api";
-      script.async = true;
-      await document.body.appendChild(script);
-      setScriptLoaded(true);
-    };
 
-    !scriptLoaded && loadYoutubeAPI();
     // @ts-ignore
     window.YT.ready(() => {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -97,7 +87,7 @@ export const VideoBackground = () => {
           },
         },
       });
-    });
+    }, []);
 
     window.addEventListener("resize", update);
   });
@@ -107,7 +97,7 @@ export const VideoBackground = () => {
       <div className="video-background">
         <div className="pattern-overlay"></div>
         <div id="_buffering-background"></div>
-
+        {!isMobile() && <Particles className="particles" params={particleData} />}
         <div
           className="video-foreground"
           id="YouTubeBackgroundVideoPlayer"
