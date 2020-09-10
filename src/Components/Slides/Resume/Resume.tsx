@@ -19,16 +19,6 @@ const Resume = (props: {
   resetPlaySlide?: Function;
 }) => {
 
-  const [titlePlayed, setTitlePlayed] = React.useState(false);
-
-  React.useEffect(() => {
-    if (props.slideState?.playSlide === props.index && !titlePlayed) {
-      playTitle("#resumeTitle", 0);
-      setTitlePlayed(true);
-      props.resetPlaySlide && props.resetPlaySlide();
-    }
-  });
-
   const handleMobileResumeClick = () => {
 
   }
@@ -36,7 +26,7 @@ const Resume = (props: {
   return (
     <div id="resume">
       <div className="titleDiv">
-        <svg id="resumeTitle" viewBox="0 0 150 100" className="svgTitle">
+        <svg id="title" viewBox="0 0 150 100" className="svgTitle">
           <text x="50%" y="60%" textAnchor="middle" fill="transparent"> RESUME & WORK
           </text>
         </svg>
@@ -62,13 +52,6 @@ const Resume = (props: {
         </div>
         <div><div id="workDiv">
           <blockquote className="embedly-card" data-card-theme="dark"><h4><a href="https://medium.com/apache-mxnet/self-driving-remote-control-car-with-apache-mxnet-1919541a83d7">Self driving remote-control car with Apache MXNet</a></h4><p>This is the complete list of parts required to build the car. I've added some additional comments based on my experience buying some of these items, as the availability of parts varies by location. After you have procured all of the components, it's time to assemble the hardware.</p></blockquote>
-          <div id="caption">
-              <p>
-                {" "}
-                Some work I did for Amazon. 
-   
-              </p>
-            </div>
         </div></div>
         
       </AwesomeSlider>

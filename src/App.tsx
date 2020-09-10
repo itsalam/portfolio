@@ -8,24 +8,22 @@ import Contact from "./Components/Slides/Contact/Contact";
 import Slider from "./Components/Slider/Slider";
 import { VideoBackground } from "Components/Background/VideoBackground";
 import Resume from "Components/Slides/Resume/Resume";
-import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
-import { urlToSlide, scrollSlide } from "State/actions";
+import { urlToSlide, registerSlide, swapSlide } from "State/actions";
 import { isMobile } from "is-mobile";
-var debounce = require("lodash.debounce");
 
-const App = (
-  props: { urlToSlide: Function; scrollSlide: Function },
-  match: { slide: string }
-) => {
-  const [slides, setSlides] = React.useState<JSX.Element[]>();
-  const [homePage, setHomePage] = React.useState<JSX.Element>();
+const App = ( props: { urlToSlide: Function; registerSlide: Function, swapSlide: Function, match: {params: { slide: string}}}) => {
+
+  const [view, setView] = React.useState<JSX.Element>();
 
   React.useEffect(() => {
-    console.log(match.slide);
+    console.log(props);
     getResumeData();
-    match.slide && props.urlToSlide(match.slide);
   }, [props]);
+
+  React.useEffect(() => {
+
+  })
 
   const getResumeData = async () => {
     await fetch("/resumeData.json")
@@ -40,20 +38,26 @@ const App = (
         const aboutPage = <About data={value} name="About" />;
         const contactPage = <Contact data={value} name="Contact" />;
         const resumePage = <Resume data={value} name="Resume" />;
-        const subSlider = (
-          <Slider slides={[aboutPage, resumePage, contactPage]} />
-        );
-        const homePage = (
-          <HomePage name="Home" data={value} slider={subSlider} />
-        );
-        setHomePage(homePage);
-        setSlides([homePage, aboutPage, resumePage, contactPage]);
+        const slides = [aboutPage, resumePage, contactPage]
+        if (isMobile()){
+          const homePage = <HomePage name="Home" data={value}/>
+          slides.unshift(homePage);
+          setView(<Slider slides={slides}/>)
+        } else {
+          const subSlider = (<Slider slides={slides}/>);
+          setView(<HomePage name="Home" data={value} slider={subSlider} />);
+        }
+        slides.forEach((slide, index) => {
+          props.registerSlide(slide.props.name, index);
+        })
+      }).then(() => {
+        props.match.params.slide ? props.urlToSlide(props.match.params.slide) : props.swapSlide(0);
       });
   };
-  return slides ? (
+  return view ? (
     <div className="App">
       <VideoBackground />
-      {isMobile() ? <Slider slides={slides} /> : homePage}
+      {view}
     </div>
   ) : (
     <div id="loader">
@@ -68,4 +72,4 @@ const App = (
   );
 };
 
-export default connect((a, b) => ({ b }), { urlToSlide, scrollSlide })(App);
+export default connect((a, b) => ({ b }), { urlToSlide, registerSlide, swapSlide })(App);

@@ -3,21 +3,27 @@ import "./Title.scss";
 import anime from 'animejs';
 
 export const Title = (props: { titleStr: string, networks: JSX.Element[] | null, skipTitle: boolean }) => {
+    const [fullTitle, setFullTitle] = React.useState(props.titleStr);
     const [currentTitle, setCurrentTitle] = React.useState("");
     const [animationComplete, setAnimationComplete] = React.useState(false);
     const ref = React.createRef<HTMLDivElement>();
 
     useEffect(() => {
-        const cursorSpeed = currentTitle? anime.random(80, 100) : 1000;
-        if (props.skipTitle){
-            setCurrentTitle(props.titleStr);
-        } else {
+        if (false){
+            setCurrentTitle(fullTitle);
+        } else if (currentTitle !== fullTitle) {
+            const cursorSpeed = currentTitle? anime.random(60, 85) : 1000;
             setTimeout(() => {
-                setCurrentTitle(currentTitle + props.titleStr.charAt(currentTitle.length));
+                setCurrentTitle(currentTitle + fullTitle.charAt(currentTitle.length));
             }, cursorSpeed);
         }
-        if (currentTitle.length === props.titleStr.length && !animationComplete) {
-            setAnimationComplete(true)
+        if (currentTitle === fullTitle){
+            setAnimationComplete(true);
+        }
+    }, [currentTitle, fullTitle])
+
+    useEffect(() => {
+        if (animationComplete) {
             anime.timeline({
                 delay: 1500,
             }).add({
@@ -77,7 +83,7 @@ export const Title = (props: { titleStr: string, networks: JSX.Element[] | null,
                 }
             })
         }
-    }, [, currentTitle, props])
+    }, [animationComplete])
 
     return (
         <div className="row banner banner-text">

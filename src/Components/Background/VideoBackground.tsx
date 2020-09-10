@@ -3,6 +3,7 @@ import { CSSTransition } from "react-transition-group";
 import anime from "animejs";
 import "./VideoBackground.scss";
 
+
 import Particles from 'react-particles-js';
 
 var particleData = require("particles.json");
@@ -10,7 +11,6 @@ var particleData = require("particles.json");
 export const VideoBackground = () => {
   var [height, setHeight] = React.useState<number>();
   var [width, setWidth] = React.useState<number>();
-  var [fading, setFading] = React.useState(false);
   var [scriptLoaded, setScriptLoaded] = React.useState(false);
 
   const update = () => {
@@ -49,11 +49,10 @@ export const VideoBackground = () => {
     };
 
     !scriptLoaded && loadYoutubeAPI();
-
-    var player: YT.Player;
     // @ts-ignore
     window.YT.ready(() => {
-      player = new YT.Player("YouTubeBackgroundVideoPlayer", {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      var player = new YT.Player("YouTubeBackgroundVideoPlayer", {
         videoId: "qt9jjQqJ3Wc", // YouTube Video ID
         width: width, // Player width (in px)
         height: height, // Player height (in px)
@@ -109,11 +108,10 @@ export const VideoBackground = () => {
         <div className="pattern-overlay"></div>
         <div id="_buffering-background"></div>
 
-        <Particles className="particles" params={particleData} />
         <div
           className="video-foreground"
           id="YouTubeBackgroundVideoPlayer"
-        ></div>
+        />
       </div>
     </CSSTransition>
   );

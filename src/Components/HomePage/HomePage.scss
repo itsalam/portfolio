@@ -20,7 +20,8 @@
     background-color: transparent;
 }
 
-.smoothscroll {
+.scrollicon {
+    cursor: pointer;
     transform: translateY(4vh);
     opacity: 0;
     z-index: 3;

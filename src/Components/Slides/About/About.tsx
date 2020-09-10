@@ -14,19 +14,10 @@ export const About = (props: {
   index?: number;
 }) => {
 
-  const [titlePlayed, setTitlePlayed] = React.useState(false);
-
-  React.useEffect(() => {
-    if (props.slideState?.playSlide === props.index && !titlePlayed) {
-      playTitle("#aboutTitle", 0);
-      setTitlePlayed(true);
-    }
-  });
-
   return (
     <div id="about">
       <div className="titleDiv">
-        <svg id="aboutTitle" viewBox="0 0 150 100" className="svgTitle">
+        <svg id="title" viewBox="0 0 150 100" className="svgTitle">
           <text x="50%" y="60%" textAnchor="middle" fill="transparent"> ABOUT
             </text>
         </svg>

@@ -9,10 +9,9 @@ export enum ACTIONS {
 
 export interface SlideState {
     slides: Map<string, number>;
-    activeSlide: number;
-    oldSlide?: number;
-    originSlide?: number;
+    activeSlide?: number;
     playSlide?: number;
+    skipTitle?: boolean;
 }
 
 export interface SlideAction extends SlideState{

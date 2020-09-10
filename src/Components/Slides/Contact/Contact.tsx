@@ -14,18 +14,6 @@ const Contact = (props: {
    resetPlaySlide?: Function;
 }) => {
 
-
-   const [titlePlayed, setTitlePlayed] = React.useState(false);
-
-   React.useEffect(() => {
-      if (props.slideState?.playSlide === props.index && !titlePlayed) {
-         playTitle("#contactTitle", 0);
-         setTitlePlayed(true);
-         props.resetPlaySlide && props.resetPlaySlide();
-      }
-   });
-
-
    const data = props.data;
 
    const handleChange = () => {
@@ -35,7 +23,7 @@ const Contact = (props: {
    return (
       <div id="contact">
          <div className="titleDiv">
-            <svg id="contactTitle" viewBox="0 0 150 100" className="svgTitle">
+            <svg id="title" viewBox="0 0 150 100" className="svgTitle">
                <text x="50%" y="60%" textAnchor="middle" fill="transparent"> CONTACT
           </text>
             </svg>

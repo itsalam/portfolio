@@ -5,12 +5,13 @@ import { swapSlide } from "State/actions";
 import "./Navbar.scss"
 import { slideIcon } from "Helpers/functions";
 
-const NavBar = (props: { slides: Map<string, number>, activeSlide: number, swapSlide: Function }) => {
+const NavBar = (props: { slides: Map<string, number>, activeSlide?: number, swapSlide: Function }) => {
 
     return (
         <div id="navBar">
             <ul>
                 {
+                    
                     Array.from(props.slides.entries(), ([name, index]) => {
                         return (
                         <li key={name} className={"navEntry " + ( props.activeSlide === index? "current" : "" )} onClick={() => props.swapSlide(index)}>
