@@ -3,11 +3,6 @@ import { CSSTransition } from "react-transition-group";
 import anime from "animejs";
 import "./VideoBackground.scss";
 
-
-import Particles from 'react-particles-js';
-
-var particleData = require("particles.json");
-
 export const VideoBackground = () => {
   var [height, setHeight] = React.useState<number>();
   var [width, setWidth] = React.useState<number>();
@@ -26,12 +21,12 @@ export const VideoBackground = () => {
             targets: document.getElementById("_buffering-background"),
           })
           .add({
-            duration: 500,
+            duration: 2500,
             easing: "easeOutQuad",
             opacity: [0, 1],
           })
           .add({
-            duration: 1500,
+            duration: 2500,
             easing: "easeInQuad",
             opacity: [1, 0],
           }),

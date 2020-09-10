@@ -9,9 +9,7 @@ export const Title = (props: { titleStr: string, networks: JSX.Element[] | null,
     const ref = React.createRef<HTMLDivElement>();
 
     useEffect(() => {
-        if (false){
-            setCurrentTitle(fullTitle);
-        } else if (currentTitle !== fullTitle) {
+        if (currentTitle !== fullTitle) {
             const cursorSpeed = currentTitle? anime.random(60, 85) : 1000;
             setTimeout(() => {
                 setCurrentTitle(currentTitle + fullTitle.charAt(currentTitle.length));
@@ -68,7 +66,7 @@ export const Title = (props: { titleStr: string, networks: JSX.Element[] | null,
                 },
             }, 250)
 
-            anime({                
+            !props.skipTitle && anime({                
                 targets: ".scrollicon",
                 opacity: {
                     value: [0, 1],
@@ -80,7 +78,8 @@ export const Title = (props: { titleStr: string, networks: JSX.Element[] | null,
                     easing: "easeOutQuint",
                     duration: 1000,
                     delay: 500
-                }
+                },
+                
             })
         }
     }, [animationComplete])

@@ -50,8 +50,4 @@ function slideReducer(state:SlideState = {slides: new Map()}, action: SlideActio
     }
 }
 
-function routeReducer( state: {}, action: {}){
-
-}
-
 export default combineReducers({slideState: slideReducer})

@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './Contact.scss'
 import { PortfolioData } from 'Models/portfolioData';
 import { SlideState } from 'State/types';
-import { playTitle } from '../Animations';
 import { connect } from 'react-redux';
 import { resetPlaySlide, registerSlide } from "State/actions";
 
@@ -14,11 +13,7 @@ const Contact = (props: {
    resetPlaySlide?: Function;
 }) => {
 
-   const data = props.data;
 
-   const handleChange = () => {
-
-   }
 
    return (
       <div id="contact">

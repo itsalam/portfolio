@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import "./App.css";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
@@ -51,7 +51,12 @@ const App = ( props: { urlToSlide: Function; registerSlide: Function, swapSlide:
           props.registerSlide(slide.props.name, index);
         })
       }).then(() => {
-        props.match.params.slide ? props.urlToSlide(props.match.params.slide) : props.swapSlide(0);
+        if (props.match.params.slide) {
+          props.urlToSlide(props.match.params.slide);
+        } else if (isMobile()){
+          props.swapSlide(0);
+        } 
+        
       });
   };
   return view ? (

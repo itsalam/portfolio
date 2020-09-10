@@ -1,4 +1,4 @@
-import React, { Component, useEffect, Fragment } from 'react';
+import React, { useEffect, Fragment } from 'react';
 import anime from "animejs";
 import { Transition, TransitionGroup } from 'react-transition-group';
 import './Slider.scss';

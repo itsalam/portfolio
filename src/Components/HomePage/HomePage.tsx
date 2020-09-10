@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, Component } from "react";
+import React, { Fragment, Component } from "react";
 import { PortfolioData } from "../../Models/portfolioData";
 import "./HomePage.scss";
 import anime from "animejs";
@@ -77,7 +77,7 @@ export class HomePage extends Component<HomePageProps, {sliderHidden: boolean, s
         opacity: [0, 1],
         duration: 1500,
         easing: "easeOutCirc",
-        begin: ()=> {}
+        begin: ()=> {this.props.activeSlide === undefined && this.props.swapSlide(0)}
       })
       anime({
         targets: ["#navBar"],

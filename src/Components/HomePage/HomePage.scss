@@ -1,31 +1,26 @@
-
-
 #home .slider {
-    transform: translateX(100vw);
-    z-index: 20;
-    width: 48vw;
-    height: 100vh;
-    right: 4vw;
-    top: 0;
-    position: fixed;
-    opacity: 0;
-    display: flex;
+  transform: translateX(100vw);
+  z-index: 20;
+  width: 48vw;
+  height: 100vh;
+  right: 4vw;
+  top: 0;
+  position: fixed;
+  opacity: 0;
+  display: flex;
 }
 
 #home #navBar {
-    transform: translateX(5vw);
+  transform: translateX(5vw);
 }
 
 #home {
-    background-color: transparent;
+  background-color: transparent;
 }
 
 .scrollicon {
-    cursor: pointer;
-    transform: translateY(4vh);
-    opacity: 0;
-    z-index: 3;
+  cursor: pointer;
+  transform: translateY(4vh);
+  opacity: 0;
+  z-index: 3;
 }
-
-
-

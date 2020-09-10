@@ -1,11 +1,9 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { PortfolioData } from "Models/portfolioData";
 import "./About.scss";
-import anime from "animejs";
 import { SlideState } from "State/types";
 import { resetPlaySlide} from "State/actions";
-import { playTitle } from "../Animations";
 
 export const About = (props: {
   name: String;

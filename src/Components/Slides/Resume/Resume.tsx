@@ -40,11 +40,11 @@ const Resume = (props: {
               <iframe
                 title="resumePdf"
                 id="resumePdf"
-                src="https://drive.google.com/file/d/1tgh9ymwnGOIz2_FtGaaHbu6RNw5Yq33J/preview"
+                src="resume.pdf"
                 onClick={handleMobileResumeClick}
               ></iframe>
             ) : (
-                <embed id="resumePdf" src="https://drive.google.com/file/d/1tgh9ymwnGOIz2_FtGaaHbu6RNw5Yq33J/preview" />
+                <embed id="resumePdf" src="resume.pdf" />
               )}
 
             
