@@ -97,7 +97,7 @@ export const VideoBackground = () => {
       <div className="video-background">
         <div className="pattern-overlay"></div>
         <div id="_buffering-background"></div>
-        {!isMobile() && <Particles className="particles" params={particleData} />}
+        {!isMobile({tablet: true}) && <Particles className="particles" params={particleData} />}
         <div
           className="video-foreground"
           id="YouTubeBackgroundVideoPlayer"

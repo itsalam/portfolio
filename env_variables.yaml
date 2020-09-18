@@ -1,0 +1,2 @@
+env_variables:
+  CONTACT_URL: https://us-central1-portfolio-282821.cloudfunctions.net/portfolio-contact-form

@@ -3,9 +3,7 @@ import { PortfolioData } from "Models/portfolioData";
 import AwesomeSlider from "react-awesome-slider";
 import "react-awesome-slider/dist/styles.css";
 import "./Resume.scss";
-import "../SlideStyle.scss";
 import { SlideState } from "State/types";
-import { playTitle } from "../Animations";
 import { connect } from "react-redux";
 import { resetPlaySlide, registerSlide } from "State/actions";
 
@@ -36,15 +34,15 @@ const Resume = (props: {
       <AwesomeSlider className="resume-slider">
         <div id="resumeSlide">
           <div id="pdfDiv">
-            {mobile() ? (
+            {mobile({tablet: true}) ? (
               <iframe
                 title="resumePdf"
                 id="resumePdf"
-                src="resume.pdf"
+                src="https://drive.google.com/file/d/1tgh9ymwnGOIz2_FtGaaHbu6RNw5Yq33J/preview"
                 onClick={handleMobileResumeClick}
               ></iframe>
             ) : (
-                <embed id="resumePdf" src="resume.pdf" />
+                <embed id="resumePdf" src="Vincent LAM CMPT August 2020.pdf" />
               )}
 
             

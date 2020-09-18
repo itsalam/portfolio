@@ -1,9 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
 import "./Title.scss";
 import anime from 'animejs';
 
 export const Title = (props: { titleStr: string, networks: JSX.Element[] | null, skipTitle: boolean }) => {
-    const [fullTitle, setFullTitle] = React.useState(props.titleStr);
+    const [fullTitle, ] = React.useState(props.titleStr);
     const [currentTitle, setCurrentTitle] = React.useState("");
     const [animationComplete, setAnimationComplete] = React.useState(false);
     const ref = React.createRef<HTMLDivElement>();

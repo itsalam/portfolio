@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="303.113px" height="270.835px" viewBox="0 0 303.113 270.835" enable-background="new 0 0 303.113 270.835"
+	 xml:space="preserve">
+<filter  height="300%" width="300%" id="editing-hole" y="-100%" x="-100%">
+	<feFlood  result="black" flood-color="#bbcedd"></feFlood>
+	<feMorphology  in="SourceGraphic" radius="2" operator="dilate" result="erode"></feMorphology>
+	<feGaussianBlur  in="erode" stdDeviation="4" result="blur"></feGaussianBlur>
+	<feOffset  dy="2" dx="2" in="blur" result="offset"></feOffset>
+	<feComposite  in2="black" in="offset" operator="atop" result="merge"></feComposite>
+	<feComposite  in2="SourceGraphic" in="merge" operator="in" result="inner-shadow"></feComposite>
+</filter>
+<g filter="url(#editing-hole)">
+	<g transform="translate(159.2040615081787, 133.93999862670898)">
+		<path fill="#85A2B6" d="M-25.44-95.533h21.212L-66.291,98.489h-26.495l-61.497-194.022h20.646l54.247,173.35L-25.44-95.533z
+			 M138.989,81.093v17.396H20.265V-95.533h19.497V81.093H138.989z"/>
+	</g>
+</g>
+</svg>

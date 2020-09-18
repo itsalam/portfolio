@@ -11,17 +11,17 @@ const NavBar = (props: { slides: Map<string, number>, activeSlide?: number, swap
         <div id="navBar">
             <ul>
                 {
-                    
+
                     Array.from(props.slides.entries(), ([name, index]) => {
                         return (
-                        <li key={name} className={"navEntry " + ( props.activeSlide === index? "current" : "" )} onClick={() => props.swapSlide(index)}>
-                            <div className="navContent" >
-                                <i className="material-icons">{slideIcon(name.toLowerCase())}</i>
-                                <div>
-                                    <p>{name.toUpperCase()}</p>
+                            <li key={name} className={"navEntry " + (props.activeSlide === index ? "current" : "")} onClick={() => props.swapSlide(index)}>
+                                <div className="navContent" >
+                                    <i className="material-icons">{slideIcon(name.toLowerCase())}</i>
+                                    <div>
+                                        <p>{name.toUpperCase()}</p>
+                                    </div>
                                 </div>
-                            </div>
-                        </li> )
+                            </li>)
                     })
                 }
             </ul>

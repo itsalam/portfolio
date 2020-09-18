@@ -1,0 +1,6 @@
+<svg width="118.6425048828125px" height="106.402490234375px" xmlns="http://www.w3.org/2000/svg" viewBox="190.67874755859376 21.798754882812503 118.6425048828125 106.402490234375" style="background: rgb(253, 253, 253);" preserveAspectRatio="xMidYMid"><defs><filter id="editing-hole" x="-100%" y="-100%" width="300%" height="300%"><feFlood flood-color="#bbcedd" result="black"></feFlood><feMorphology operator="dilate" radius="2" in="SourceGraphic" result="erode"></feMorphology><feGaussianBlur in="erode" stdDeviation="4" result="blur"></feGaussianBlur><feOffset in="blur" dx="2" dy="2" result="offset"></feOffset><feComposite operator="atop" in="offset" in2="black" result="merge"></feComposite><feComposite operator="in" in="merge" in2="SourceGraphic" result="inner-shadow"></feComposite></filter></defs><g filter="url(#editing-hole)"><g transform="translate(218.32687747478485, 95.38999938964844)"><path d="M26.44-40.78L31.09-40.78L17.47 0L11.66 0L-1.84-40.78L2.69-40.78L14.59-4.34L26.44-40.78ZM62.53-3.66L62.53 0L36.47 0L36.47-40.78L40.75-40.78L40.75-3.66L62.53-3.66Z" fill="#85a2b6"></path></g></g><style>text {
+  font-size: 64px;
+  font-family: Arial Black;
+  dominant-baseline: central;
+  text-anchor: middle;
+}</style></svg>

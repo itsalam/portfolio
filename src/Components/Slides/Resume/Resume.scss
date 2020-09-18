@@ -89,20 +89,7 @@ display: inline-flex;
   }
 }
 
-
-// @keyframes textAnimate{
-//   0%{
-//     stroke-dasharray: 0 50%;
-//     stroke-dashoffset: 20%;
-//   }
-//   100%{
-//     stroke-dasharray: 50% 0;
-//     stroke-dashoffset: -20%;
-//   }
-// }
-
-
-@media only screen and (max-width: 768px) {
+@media (orientation: portrait) {
   #resumePdf {
     width: 640;
     height: 480;

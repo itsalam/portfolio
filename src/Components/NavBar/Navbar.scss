@@ -9,11 +9,15 @@
     z-index: 20;
 }
 
+#navBar ul{
+    padding-top: 2vh;
+}
+
 #navBar .navContent {
     cursor: pointer;
     color: #aaaaaa;
     width: 100%;
-    margin: 25% 0px;
+    padding: 20% 0;
     height: 100%;
 }
 
@@ -45,18 +49,19 @@
 
 
 #navBar li {
-    font-size: 11px;
     letter-spacing: 1px;
     width: 100%;
     height: 80px;
     margin-bottom: 0px;
+    p{
+        font-size: 9px;
+    }
 }
 
 #navBar i {
     margin: auto;
     color: #aaaaaa
 }
-
 
 @media only screen and (max-width: 768px) {
 

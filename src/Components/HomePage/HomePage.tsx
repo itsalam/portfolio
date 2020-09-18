@@ -56,7 +56,7 @@ export class HomePage extends Component<HomePageProps, {sliderHidden: boolean, s
   }
 
   showSlider = () => {
-    if (!isMobile() && this.state.sliderHidden) {
+    if (!isMobile({tablet: true}) && this.state.sliderHidden) {
       this.setState({skipTitle: true, sliderHidden: false})
 
       anime({
@@ -98,7 +98,7 @@ export class HomePage extends Component<HomePageProps, {sliderHidden: boolean, s
         skipTitle={this.state.skipTitle}
       ></Title>
 
-      {!isMobile() ? (
+      {!isMobile({tablet: true}) ? (
         <Fragment>
           {this.props.slider}
           <p className="scrolldown">
@@ -109,9 +109,7 @@ export class HomePage extends Component<HomePageProps, {sliderHidden: boolean, s
         </Fragment>
       ) : (
         <p className="scrolldown">
-          <a className="scrollicon" onClick={this.showSlider}>
-            <i className="icon-down-circle"></i>
-          </a>
+          <i className="icon-down-circle scrollicon" onClick={this.showSlider}></i>
         </p>
       )}
     </header>

@@ -11,19 +11,17 @@ import Resume from "Components/Slides/Resume/Resume";
 import { connect } from "react-redux";
 import { urlToSlide, registerSlide, swapSlide } from "State/actions";
 import { isMobile } from "is-mobile";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = ( props: { urlToSlide: Function; registerSlide: Function, swapSlide: Function, match: {params: { slide: string}}}) => {
 
   const [view, setView] = React.useState<JSX.Element>();
-
   React.useEffect(() => {
-    console.log(props);
     getResumeData();
-  }, [props]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  React.useEffect(() => {
-
-  })
 
   const getResumeData = async () => {
     await fetch("/resumeData.json")
@@ -39,7 +37,7 @@ const App = ( props: { urlToSlide: Function; registerSlide: Function, swapSlide:
         const contactPage = <Contact data={value} name="Contact" />;
         const resumePage = <Resume data={value} name="Resume" />;
         const slides = [aboutPage, resumePage, contactPage]
-        if (isMobile()){
+        if (isMobile({tablet: true})){
           const homePage = <HomePage name="Home" data={value}/>
           slides.unshift(homePage);
           setView(<Slider slides={slides}/>)
@@ -53,7 +51,7 @@ const App = ( props: { urlToSlide: Function; registerSlide: Function, swapSlide:
       }).then(() => {
         if (props.match.params.slide) {
           props.urlToSlide(props.match.params.slide);
-        } else if (isMobile()){
+        } else if (isMobile({tablet: true})){
           props.swapSlide(0);
         } 
         
@@ -63,6 +61,14 @@ const App = ( props: { urlToSlide: Function; registerSlide: Function, swapSlide:
     <div className="App">
       <VideoBackground />
       {view}
+      <ToastContainer 
+            position="bottom-center"
+            autoClose={5000}
+            closeOnClick
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover            
+         />
     </div>
   ) : (
     <div id="loader">
