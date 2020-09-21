@@ -88,14 +88,33 @@ const Slider = (props: { slides: JSX.Element[], activeSlide?: number, registerSl
                             key={`slide-${index}`}
                             nodeRef={nodeRef}
                         >
+
                             <div
                                 className={`slide-${index} slide ` + (props.activeSlide === index ? "" : "")}
                                 key={`slide-${index}-page`}
                                 ref={nodeRef}
                             >
+                            { 0 !== index? 
+                                <div className="arrow up">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>:
+                                <div/>
+                            };
+
                                 <div className={(isMobile({ tablet: true }) && index === 0) ? "main" : ""} id="background">
                                     {slide}
                                 </div>
+                            {props.slides.length -1 !== index? 
+                                <div className="arrow down">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>:
+                                <div/>
+                            };
+                            
                             </div>
                         </Transition>
                     )

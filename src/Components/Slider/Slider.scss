@@ -39,3 +39,99 @@ sliderDiv {
 #background.main {
     background: transparent;
 }
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+}
+
+.arrow {
+    transform: translate(-50%, -50%);
+    position: absolute;
+    right: 20px;
+
+    span {
+        display: block;
+        width: 15px;
+        height: 15px;
+        margin: -10px;
+        transform: rotate(45deg);
+    }
+}
+
+.arrow.up {
+    top: 70px;
+
+    span {
+        border-top: 5px solid #11ABB0;
+        border-left: 5px solid #11ABB0;
+        animation: animateup 2s infinite;
+    }
+}
+
+.arrow.down {
+    bottom: 70px;
+
+    span {
+        margin: -10px;
+        border-bottom: 5px solid #11ABB0;
+        border-right: 5px solid #11ABB0;
+        animation: animatedown 2s infinite;
+    }
+}
+
+.arrow span:nth-child(2) {
+    animation-delay: -0.2s;
+}
+
+.arrow span:nth-child(3) {
+    animation-delay: -0.4s;
+}
+
+.arrow.up span:nth-child(0) {
+    animation-delay: 0.0s;
+}
+
+.arrow.up span:nth-child(2) {
+    animation-delay: .2s;
+}
+
+.arrow.up span:nth-child(3) {
+    animation-delay: .4s;
+}
+
+
+
+@keyframes animatedown {
+    0% {
+        opacity: 0;
+        transform: rotate(45deg) translate(-10px, -10px);
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform: rotate(45deg) translate(10px, 10px);
+    }
+}
+
+
+@keyframes animateup {
+    0% {
+        opacity: 0;
+        transform: rotate(45deg) translate(10px, 10px);
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform: rotate(45deg) translate(-10px, -10px);
+    }
+}

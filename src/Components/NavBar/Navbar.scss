@@ -3,8 +3,8 @@
     right: 0;
     top: 0;
     height: 100vh;
-    width: 2.5vw;
-    min-width: 50px;
+    width: 2.75vw;
+    min-width: 55px;
     background-color: rgba(29, 29, 29, 0.668);   
     z-index: 20;
 }
@@ -49,6 +49,8 @@
 
 
 #navBar li {
+
+    display:inline-block;
     letter-spacing: 1px;
     width: 100%;
     height: 80px;
@@ -61,6 +63,14 @@
 #navBar i {
     margin: auto;
     color: #aaaaaa
+}
+
+#navBar .activeTab {
+    position: fixed;
+    height: 80px;
+    width: 2px;
+    background: #11ABB0;
+    transform: translateY(0);
 }
 
 @media only screen and (max-width: 768px) {

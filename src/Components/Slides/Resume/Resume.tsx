@@ -42,7 +42,7 @@ const Resume = (props: {
                 onClick={handleMobileResumeClick}
               ></iframe>
             ) : (
-                <embed id="resumePdf" src="Vincent LAM CMPT August 2020.pdf" />
+                <embed id="resumePdf" src="resume.pdf" />
               )}
 
             
