@@ -5,22 +5,62 @@ import { swapSlide } from "State/actions";
 import "./Navbar.scss"
 import { slideIcon } from "Helpers/functions";
 import anime from "animejs";
+import isMobile from "is-mobile";
 
 const NavBar = (props: { slides: Map<string, number>, activeSlide?: number, swapSlide: Function }) => {
 
+    const [isOpened, setIsOpened] = React.useState(false);
+
+    const isFirstRun = React.useRef(true);
+    
     useEffect(() => {
-        props.activeSlide !== undefined && anime({
+        const heightRange = isOpened? [`0px`, `300px`] : [`300px`, `0px`] ;
+        const tabRange = isOpened? [0, 60]: [60, 0] ;
+        !isFirstRun.current && anime.timeline().add({
+            duration: 500,
+            targets: document.querySelectorAll("#navBar #iconList"),
+            'max-height': heightRange,
+            'border-radius': [50, 0],
+            easing: "easeInOutQuart",
+            
+            complete: () => {}
+        }, 0).add({
             duration: 300,
             targets: document.querySelectorAll("#navBar .activeTab"),
-            translateY: `${80*props.activeSlide}px`,
-            easing: "easeInOutQuart",
-        });
+            height: tabRange,
+            easing: "easeInOutQuart"
+        }, 250)
+        isFirstRun.current = false;
+    },[isOpened]);
+
+
+    useEffect(() => {
+        if (props.activeSlide !== undefined) {
+            const translateTab = isMobile({tablet: true})? 
+            {
+                translateY: `${60*props.activeSlide}px`
+            } : {
+                translateY: `${80*props.activeSlide}px`
+            }
+            anime({
+                duration: 300,
+                targets: document.querySelectorAll("#navBar .activeTab"),
+                ...translateTab,
+                easing: "easeInOutQuart",
+            });
+        }
     },[props.activeSlide])
 
     return (
         <div id="navBar">
-            <ul>
+            {isMobile({tablet: true}) && 
+                <div id="mobileMenu" onClick={() => setIsOpened(!isOpened)}>
+                    <i className="material-icons">menu</i>
+                </div>
+            }
+            <ul id="iconList">
                 <div className="activeTab"/>
+ 
                 {
                     Array.from(props.slides.entries(), ([name, index]) => {
                         return (

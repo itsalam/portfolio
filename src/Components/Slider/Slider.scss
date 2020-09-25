@@ -135,3 +135,18 @@ body {
         transform: rotate(45deg) translate(-10px, -10px);
     }
 }
+
+
+@media (orientation: portrait) {
+    .arrow {
+        right: 10px;
+    }
+
+    .arrow.up {
+        top: 30px;
+    }
+    
+    .arrow.down {
+        bottom: 30px;
+    }
+}
