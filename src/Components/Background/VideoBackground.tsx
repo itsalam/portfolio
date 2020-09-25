@@ -16,93 +16,83 @@ export const VideoBackground = () => {
     setWidth(window.innerWidth);
   };
 
+  const fadeIn = () => {
+    anime({
+      duration: 2000,
+
+      easing: "easeInQuad",
+      targets: document.getElementById("_buffering-background"),
+      opacity: [1, 0],
+      delay: 1000,
+    })
+    fadeInOut();
+    console.log("bitches")
+  }
+
   const fadeInOut = () => {
-    setTimeout(
-      () =>
-        anime
-          .timeline({
-            targets: document.getElementById("_buffering-background"),
-          })
-          .add({
-            duration: 2500,
-            easing: "easeOutQuad",
-            opacity: [0, 1],
-          })
-          .add({
-            duration: 2500,
-            easing: "easeInQuad",
-            opacity: [1, 0],
-          }),
-      29500
-    );
+      anime
+        .timeline({
+          targets: document.getElementById("_buffering-background"),
+        })
+        .add({
+          duration: 2500,
+          easing: "easeOutQuad",
+          opacity: [1, 0],
+        })
+        .add({
+          delay: 29500,
+          duration: 2500,
+          easing: "easeInQuad",
+          opacity: [0, 1],
+        })
   };
 
   useEffect(() => {
 
-    // @ts-ignore
-    window.YT.ready(() => {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      var player = new YT.Player("YouTubeBackgroundVideoPlayer", {
-        videoId: "qt9jjQqJ3Wc", // YouTube Video ID
-        width: width, // Player width (in px)
-        height: height, // Player height (in px)
-        playerVars: {
-          autoplay: 1, // Auto-play the video on load
-          autohide: 1,
-          disablekb: 1,
-          controls: 0, // Hide pause/play buttons in player
-          showinfo: 0, // Hide the video title
-          modestbranding: 1, // Hide the Youtube Logo
-          loop: 1, // Run the video in a loop
-          fs: 0, // Hide the full screen button
-          rel: 0,
-          playlist: "qt9jjQqJ3Wc",
-          enablejsapi: 1,
-          cc_load_policy: 0, // closed caption
-          iv_load_policy: 3, // annotations
-          playsinline: 1, // play inline on iOS
-          origin: `${window.location.origin.toString()}`,
-        },
-        events: {
-          onReady: function (e: YT.PlayerEvent) {
-            // @ts-ignore
-            e.target.mute();
-            e.target.setPlaybackQuality("hd1080");
-            e.target.playVideo();
-            anime({
-              duration: 2000,
-
-              easing: "easeInQuad",
-              targets: document.getElementById("_buffering-background"),
-              opacity: [1, 0],
-              delay: 1000,
-            })
-            fadeInOut();
-          },
-          onStateChange: function (e) {
-            if (e.data === 0) {
-              // loop video
-              fadeInOut();
-            }
-          },
-        },
-      });
-    }, []);
+    var bv = new Bideo();
+    bv.init({
+      // Video element
+      videoEl: document.querySelector('#background_video'),
+  
+      // Container element
+      container: document.querySelector('.video-container'),
+  
+      // Resize
+      resize: true,
+  
+      autoplay: true,
+  
+      // Array of objects containing the src and type
+      // of different video formats to add
+      src: [
+        {
+          src: 'background.mp4',
+          type: 'video/mp4'
+        }
+      ],
+  
+      // What to do once video loads (initial frame)
+      onLoad: function () {
+        fadeInOut();
+      }
+    });
 
     window.addEventListener("resize", update);
   });
 
   return (
     <CSSTransition in={true} timeout={10000}>
-      <div className="video-background">
+      <div className="video-container">
         <div className="pattern-overlay"></div>
         <div id="_buffering-background"></div>
         {!isMobile({tablet: true}) && <Particles className="particles" params={particleData} />}
-        <div
+        {/* <div
           className="video-foreground"
           id="YouTubeBackgroundVideoPlayer"
-        />
+        /> */}
+        <video id="background_video" loop muted/>
       </div>
     </CSSTransition>
   );
 };
+

@@ -101,9 +101,9 @@ const Slider = (props: { slides: JSX.Element[], activeSlide?: number, registerSl
                                     <span></span>
                                 </div>:
                                 <div/>
-                            };
+                            }
 
-                                <div className={(isMobile({ tablet: true }) && index === 0) ? "main" : ""} id="background">
+                                <div id={(isMobile({ tablet: true }) && index === 0) ? "main" : ""} className="background">
                                     {slide}
                                 </div>
                             {props.slides.length -1 !== index? 
@@ -113,7 +113,7 @@ const Slider = (props: { slides: JSX.Element[], activeSlide?: number, registerSl
                                     <span></span>
                                 </div>:
                                 <div/>
-                            };
+                            }
                             
                             </div>
                         </Transition>
