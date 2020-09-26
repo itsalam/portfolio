@@ -98,20 +98,7 @@ export class HomePage extends Component<HomePageProps, {sliderHidden: boolean, s
         skipTitle={this.state.skipTitle}
       ></Title>
 
-      {!isMobile({tablet: true}) ? (
-        <Fragment>
-          {this.props.slider}
-          <p className="scrolldown">
-            <a className="scrollicon" onClick={this.showSlider} href="#about">
-              <i className="icon-down-circle"></i>
-            </a>
-          </p>
-        </Fragment>
-      ) : (
-        <p className="scrolldown">
-          <i className="icon-down-circle scrollicon" onClick={this.showSlider}></i>
-        </p>
-      )}
+      {!isMobile({tablet: true}) && this.props.slider}
     </header>
   );
   }

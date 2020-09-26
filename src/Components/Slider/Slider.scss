@@ -32,11 +32,12 @@ sliderDiv {
     height: 96%;
     background: rgba(29, 29, 29, 0.781);
     margin: auto;
-    overflow: clip;
+    overflow: scroll;
     vertical-align: middle;
 }
 
 .background#main {
+    overflow: hidden;
     background: transparent;
 }
 
@@ -142,6 +143,12 @@ body {
 }
 
 @media (orientation: portrait) {
+    #main.background + .arrow {
+        left: 50%;
+        right: 50%;
+        bottom: 20%;
+    }
+
     .arrow {
         right: 10px;
     }

@@ -8,26 +8,6 @@ import Particles from 'react-particles-js';
 var particleData = require("particles.json");
 
 export const VideoBackground = () => {
-  var [height, setHeight] = React.useState<number>();
-  var [width, setWidth] = React.useState<number>();
-
-  const update = () => {
-    setHeight(window.innerHeight);
-    setWidth(window.innerWidth);
-  };
-
-  const fadeIn = () => {
-    anime({
-      duration: 2000,
-
-      easing: "easeInQuad",
-      targets: document.getElementById("_buffering-background"),
-      opacity: [1, 0],
-      delay: 1000,
-    })
-    fadeInOut();
-    console.log("bitches")
-  }
 
   const fadeInOut = () => {
       anime
@@ -48,7 +28,6 @@ export const VideoBackground = () => {
   };
 
   useEffect(() => {
-
     var bv = new Bideo();
     bv.init({
       // Video element
@@ -57,6 +36,8 @@ export const VideoBackground = () => {
       // Container element
       container: document.querySelector('.video-container'),
   
+
+
       // Resize
       resize: true,
   
@@ -76,8 +57,6 @@ export const VideoBackground = () => {
         fadeInOut();
       }
     });
-
-    window.addEventListener("resize", update);
   });
 
   return (
@@ -86,11 +65,7 @@ export const VideoBackground = () => {
         <div className="pattern-overlay"></div>
         <div id="_buffering-background"></div>
         {!isMobile({tablet: true}) && <Particles className="particles" params={particleData} />}
-        {/* <div
-          className="video-foreground"
-          id="YouTubeBackgroundVideoPlayer"
-        /> */}
-        <video id="background_video" loop muted/>
+        <video preload="auto" autoPlay playsInline id="background_video" loop muted/>
       </div>
     </CSSTransition>
   );

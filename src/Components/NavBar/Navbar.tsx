@@ -15,7 +15,7 @@ const NavBar = (props: { slides: Map<string, number>, activeSlide?: number, swap
     
     useEffect(() => {
         const heightRange = isOpened? [`0px`, `300px`] : [`300px`, `0px`] ;
-        const tabRange = isOpened? [0, 60]: [60, 0] ;
+        const tabRange = isOpened? [0, 50]: [50, 0] ;
         !isFirstRun.current && anime.timeline().add({
             duration: 500,
             targets: document.querySelectorAll("#navBar #iconList"),

@@ -28,22 +28,7 @@ body { background: #0f0f0f; }
 /* b. Header Styles
 /* ------------------------------------------------------------------ */
 
-header {
-   position: fixed;
-   height: 100vh;
-   width: 100vw;
-   background-size: cover !important;
-	-webkit-background-size: cover !important;
-   text-align: center;
-}
-
-/* vertically center banner section */
-
-
-
-
 header .banner-text {
-   height: 100%;
    width: 100%;}
 header .banner-text h1 {
    font: 40px/1.1em 'Anonymous Pro', sans-serif;

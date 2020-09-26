@@ -9,12 +9,13 @@ import { SlideState } from 'State/types';
 import isMobile from "is-mobile";
 import "./SlideStyle.scss";
 import { playTitle } from 'Components/Slides/Animations';
+import Hammer from "hammerjs";
 var debounce = require("lodash.debounce");
 
 const Slider = (props: { slides: JSX.Element[], activeSlide?: number, registerSlide: Function, scrollSlide: Function }) => {
     const [oldSlide, setOldSlide] = React.useState<number>();
     const [slideActive, setSlideActive] = React.useState(false);
-    const [slidesVisited, setSlidesVisited] = React.useState(props.slides.map(() => false));
+    const [slidesVisited, ] = React.useState(props.slides.map(() => false));
 
     const nodeRef: React.RefObject<HTMLDivElement> = React.createRef();
 
@@ -74,6 +75,28 @@ const Slider = (props: { slides: JSX.Element[], activeSlide?: number, registerSl
             props.activeSlide !== undefined && slideTo(props.activeSlide);
         }
     })
+
+    useEffect(() => {
+        if (isMobile({tablet: true})){
+            
+            var slider = document.querySelector('.slider') as HTMLElement;
+            var hammer = new Hammer(slider!);
+
+            hammer.get('swipe').set({
+                direction: Hammer.DIRECTION_ALL,
+                threshold: 10, 
+                velocity: 0.1
+              });
+
+            hammer.on('swipeup swipedown', (e)=> {
+                if (Hammer.DIRECTION_UP === e.direction) {
+                    props.scrollSlide(1);
+                } else if (Hammer.DIRECTION_DOWN === e.direction) {
+                    props.scrollSlide(-1);
+                }
+            })
+          }
+    }, [])
 
     return (
         <Fragment>

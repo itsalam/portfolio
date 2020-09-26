@@ -1,7 +1,7 @@
 #about {
   vertical-align: middle;
   display: inline-grid;
-  grid-template-rows: 15% 1fr 1fr;
+  grid-template-rows: 15% auto 1fr;
   height: 100%;
   overflow: auto;
  }
@@ -24,7 +24,7 @@
 }
 
 .logo img {
-  width: 5vw;
+  width: 6.5vw;
   fill: rgb(145, 145, 145);
   filter: invert(.60);
 }
@@ -39,7 +39,7 @@
 }
 
 #tools {
-  margin: 2% 5%;
+  margin: 2% 18%;
   display: flex;
   align-items: center;
   align-content: space-around;
@@ -53,6 +53,7 @@
 @media (orientation: portrait) {
   #about {
     overflow: scroll;
+    
   }
 
   #about p {
@@ -73,6 +74,11 @@
 
   .logo img {
     width: 20vw;
+  }
+
+  
+  #tools {
+    margin: 2% 5%;
   }
 
   #tools-section {
