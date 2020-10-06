@@ -30,24 +30,28 @@ const Slider = (props: { slides: JSX.Element[], activeSlide?: number, registerSl
         console.log(target, oldSlide, direction);
         setTimeout(() => {
             anime({
-                duration: 400,
+                duration: 500,
                 targets: document.querySelectorAll(`.slide-${oldSlide}`),
-                translateY: [0, -100 * direction + "%"],
+                translateY: [0, -50 * direction + "%"],
+                opacity: [ 1, 0 ],
                 easing: "easeInOutQuart",
+                begin: () => {
+                    setTimeout(() => playTitleOnce(target), 250)
+                },
                 complete: () => {
                     setOldSlide(target);
-                    playTitleOnce(target);
                 }
             }
             );
 
             anime({
-                duration: 400,
+                duration: 500,
                 targets: document.querySelectorAll(`.slide-${target}`),
-                translateY: [100 * direction + "%", 0],
+                opacity: [ 0, 1 ],
+                translateY: [40 * direction + "%", 0],
                 easing: "easeInOutQuart",
             });
-        }, 50);
+        });
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -57,7 +61,6 @@ const Slider = (props: { slides: JSX.Element[], activeSlide?: number, registerSl
             document.querySelector(`.slide-${props.activeSlide}`)?.classList.add("active");
             setOldSlide(props.activeSlide);
             playTitleOnce(props.activeSlide);
-            console.log("wheel active");
             setTimeout(() => window.addEventListener(
                 "wheel",
                 debounce(
@@ -118,7 +121,7 @@ const Slider = (props: { slides: JSX.Element[], activeSlide?: number, registerSl
                                 ref={nodeRef}
                             >
                             { 0 !== index? 
-                                <div className="arrow up">
+                                <div className="arrow up" onClick={()=> props.scrollSlide(-1)}>
                                     <span></span>
                                     <span></span>
                                     <span></span>
@@ -130,7 +133,7 @@ const Slider = (props: { slides: JSX.Element[], activeSlide?: number, registerSl
                                     {slide}
                                 </div>
                             {props.slides.length -1 !== index? 
-                                <div className="arrow down">
+                                <div className="arrow down" onClick={()=> props.scrollSlide(1)}>
                                     <span></span>
                                     <span></span>
                                     <span></span>
