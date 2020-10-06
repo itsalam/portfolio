@@ -35,6 +35,7 @@ const Slider = (props: { slides: JSX.Element[], activeSlide?: number, registerSl
                 translateY: [0, -50 * direction + "%"],
                 opacity: [ 1, 0 ],
                 easing: "easeInOutQuart",
+                "z-index": [20, -20], 
                 begin: () => {
                     setTimeout(() => playTitleOnce(target), 250)
                 },
@@ -49,6 +50,7 @@ const Slider = (props: { slides: JSX.Element[], activeSlide?: number, registerSl
                 targets: document.querySelectorAll(`.slide-${target}`),
                 opacity: [ 0, 1 ],
                 translateY: [40 * direction + "%", 0],
+                "z-index": [-20, 20], 
                 easing: "easeInOutQuart",
             });
         });
