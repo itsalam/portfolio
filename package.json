@@ -22,7 +22,7 @@
     "@types/video.js": "^7.3.11",
     "@types/youtube": "0.0.39",
     "animejs": "^3.2.1",
-    "axios": "^0.20.0",
+    "axios": "^0.21.1",
     "hammerjs": "^2.0.8",
     "is-mobile": "^2.2.2",
     "lodash.debounce": "^4.0.8",
